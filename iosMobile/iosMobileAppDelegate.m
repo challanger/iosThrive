@@ -6,6 +6,9 @@
 //  Copyright 2013 __MyCompanyName__. All rights reserved.
 //
 
+//test comment
+//test comment 2
+
 #import "iosMobileAppDelegate.h"
 #import "VariableStore.h"
 #import "JSONKit.h"
