@@ -45,7 +45,7 @@
             extention = [web_image substringFromIndex:extention_location.location];
             
             //Get the unix timestamp
-            NSString *timestamp = [NSString stringWithFormat: @"%d",(long)[[NSDate date] timeIntervalSince1970]];
+            NSString *timestamp = [NSString stringWithFormat: @"%ld",(long)[[NSDate date] timeIntervalSince1970]];
             //build the file name
             NSString *file_name = [NSString stringWithFormat:@"%i_%@_%@", n_id,timestamp,extention];
             
@@ -148,10 +148,10 @@
 {
     n_id = sqlite3_column_int(statement, 0);
     web_id = sqlite3_column_int(statement, 1);
-    name = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 2)];
-    web_image = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 3)];
-    mobile_image = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 4)];
-    author = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 5)];
+    name = [[NSMutableString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 2)];
+    web_image = [[NSMutableString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 3)];
+    mobile_image = [[NSMutableString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 4)];
+    author = [[NSMutableString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 5)];
     date = sqlite3_column_int(statement, 6);
     image_loaded = sqlite3_column_int64(statement, 7);
     active = sqlite3_column_int64(statement, 8);

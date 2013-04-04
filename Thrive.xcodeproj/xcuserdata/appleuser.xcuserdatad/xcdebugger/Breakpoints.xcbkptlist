@@ -14,8 +14,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "25"
          endingLineNumber = "25"
-         landmarkName = "-get_image"
-         landmarkType = "4">
+         landmarkName = "@interface News"
+         landmarkType = "2">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -42,8 +42,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "127"
          endingLineNumber = "127"
-         landmarkName = "@implementation News"
-         landmarkType = "3">
+         landmarkName = "-load_item_db:"
+         landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -121,11 +121,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "iosMobile/iosMobileAppDelegate.m"
-         timestampString = "385154541.802173"
+         timestampString = "386730887.93344"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "112"
-         endingLineNumber = "112"
+         startingLineNumber = "114"
+         endingLineNumber = "114"
          landmarkName = "-implementDB"
          landmarkType = "5">
       </FileBreakpoint>
@@ -191,11 +191,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "iosMobile/iosMobileAppDelegate.m"
-         timestampString = "385154541.802173"
+         timestampString = "386730887.93344"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "252"
-         endingLineNumber = "252"
+         startingLineNumber = "254"
+         endingLineNumber = "254"
          landmarkName = "-pullServerRecords"
          landmarkType = "5">
       </FileBreakpoint>
@@ -210,7 +210,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "231"
          endingLineNumber = "231"
-         landmarkName = "-load_items_from_server::"
+         landmarkName = "-load_items_from_server:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -224,7 +224,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "231"
          endingLineNumber = "231"
-         landmarkName = "-load_items_from_server::"
+         landmarkName = "-load_items_from_server:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

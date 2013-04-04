@@ -9,6 +9,7 @@
 #import "MessageItem.h"
 #import "/usr/include/sqlite3.h"
 #import "VariableStore.h"
+#import "JSONKit.h"
 
 @implementation MessageItem
 
@@ -93,8 +94,8 @@
     n_id = sqlite3_column_int(statement, 0);
     web_id = sqlite3_column_int(statement, 1);
     category_id = sqlite3_column_int(statement, 2);
-    file = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 3)];
-    name = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 4)];
+    file = [[NSMutableString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 3)];
+    name = [[NSMutableString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 4)];
     active = sqlite3_column_int64(statement, 5);
     date = sqlite3_column_int(statement, 6);
     last_synced = sqlite3_column_int(statement, 7);
@@ -148,25 +149,25 @@
 
 }
 //load item from source 
--(void) load_items_from_server: (NSDictionary *) JSONData: (int) json_cat_id
+-(void) load_items_from_server: (NSDictionary *)serverData data: (int) json_cat_id
 {
     //pull the id for the news item from the json data
-    NSString *json_id= [JSONData objectForKey:@"id"];
+    NSString *json_id= [serverData objectForKey:@"id"];
     int jID= [json_id intValue];
-    int last_synced_json = [[JSONData objectForKey:@"last_modified"] intValue];
+    int last_synced_json = [[serverData objectForKey:@"last_modified"] intValue];
     
     //try to load the data from the serve 
     [self load_item_db:jID];
     if([self get_web_id]==0)
     {
         //New record create it
-        web_id= [[JSONData objectForKey:@"id"] intValue];
+        web_id= [[serverData objectForKey:@"id"] intValue];
         category_id = json_cat_id;
-        file = [JSONData objectForKey:@"url"];
-        name = [JSONData objectForKey:@"title"];
+        file = [serverData objectForKey:@"url"];
+        name = [serverData objectForKey:@"title"];
         active = 1;
-        date = [[JSONData objectForKey:@"date"] intValue];
-        last_synced = [[JSONData objectForKey:@"last_modified"] intValue];
+        date = [[serverData objectForKey:@"date"] intValue];
+        last_synced = [[serverData objectForKey:@"last_modified"] intValue];
         
         [self save_to_db]; 
     }
@@ -175,13 +176,13 @@
         //Existing record
         if(last_synced< last_synced_json) //only update if the old record is out of date
         {
-            web_id= [[JSONData objectForKey:@"id"] intValue];
+            web_id= [[serverData objectForKey:@"id"] intValue];
             category_id = json_cat_id;
-            file = [JSONData objectForKey:@"url"];
-            name = [JSONData objectForKey:@"title"];
+            file = [serverData objectForKey:@"url"];
+            name = [serverData objectForKey:@"title"];
             active = 1;
-            date = [[JSONData objectForKey:@"date"] intValue];
-            last_synced = [[JSONData objectForKey:@"last_modified"] intValue];
+            date = [[serverData objectForKey:@"date"] intValue];
+            last_synced = [[serverData objectForKey:@"last_modified"] intValue];
             
             [self save_to_db];            
         }

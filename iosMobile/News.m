@@ -48,7 +48,7 @@
             extention = [image_web substringFromIndex:extention_location.location];
             
             //Get the unix timestamp
-            NSString *timestamp = [NSString stringWithFormat: @"%d",(long)[[NSDate date] timeIntervalSince1970]];
+            NSString *timestamp = [NSString stringWithFormat: @"%ld",(long)[[NSDate date] timeIntervalSince1970]];
             //build the file name
             NSString *file_name = [NSString stringWithFormat:@"%i_%@_%@", n_id,timestamp,extention];
             
@@ -132,10 +132,10 @@
             {
                 local_id = sqlite3_column_int(statement, 0);
                 n_id = sqlite3_column_int(statement, 1);
-                image_web = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 2)];
-                image_mobile = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 3)];
-                link = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 4)];
-                caption = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 5)];
+                image_web = [[NSMutableString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 2)];
+                image_mobile = [[NSMutableString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 3)];
+                link = [[NSMutableString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 4)];
+                caption = [[NSMutableString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 5)];
                 active = sqlite3_column_int(statement, 6);
                 start_date = sqlite3_column_int(statement, 7);
                 end_date = sqlite3_column_int(statement, 8);
@@ -174,11 +174,11 @@
         NSString *saveSQL;
         if(local_id==0)
         {
-             saveSQL = [NSString stringWithFormat: @"INSERT INTO NEWS (web_image,mobile_image, link, caption, active, start_date, end_date, mobile_loaded,last_synced,webID) VALUES ('%@','%@', '%@', '%@', %i, %i, %i, %i,%i,%i)",image_web,image_mobile,link,caption,active,start_date,end_date,mobile_loaded,last_synced,n_id];
+             saveSQL = [NSString stringWithFormat: @"INSERT INTO NEWS (web_image,mobile_image, link, caption, active, start_date, end_date, mobile_loaded,last_synced,webID) VALUES ('%@','%@', '%@', '%@', %i, %li, %li, %i,%li,%i)",image_web,image_mobile,link,caption,active,start_date,end_date,mobile_loaded,last_synced,n_id];
         }
         else 
         {
-            saveSQL = [NSString stringWithFormat: @"UPDATE NEWS set web_image='%@', mobile_image='%@', link='%@', caption='%@', active=%i, start_date=%i, end_date=%i, mobile_loaded=%i, last_synced=%i WHERE webID=%i",image_web,image_mobile,link,caption,active,start_date,end_date,mobile_loaded,last_synced,n_id];
+            saveSQL = [NSString stringWithFormat: @"UPDATE NEWS set web_image='%@', mobile_image='%@', link='%@', caption='%@', active=%i, start_date=%li, end_date=%li, mobile_loaded=%i, last_synced=%li WHERE webID=%i",image_web,image_mobile,link,caption,active,start_date,end_date,mobile_loaded,last_synced,n_id];
         }
         const char *query_stmt = [saveSQL UTF8String];
         if(sqlite3_prepare_v2(thriveDB,query_stmt,-1,&statement,NULL)==SQLITE_OK)
@@ -211,10 +211,10 @@
 {
     local_id = sqlite3_column_int(statement, 0);
     n_id = sqlite3_column_int(statement, 1);
-    image_web = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 2)];
-    image_mobile = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 3)];
-    link = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 4)];
-    caption = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 5)];
+    image_web = [[NSMutableString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 2)];
+    image_mobile = [[NSMutableString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 3)];
+    link = [[NSMutableString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 4)];
+    caption = [[NSMutableString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 5)];
     active = sqlite3_column_int(statement, 6);
     start_date = sqlite3_column_int64(statement, 7);
     end_date = sqlite3_column_int64(statement, 8);

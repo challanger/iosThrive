@@ -25,13 +25,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    NSLog(@"did finish launching with options");
+    [self implementDB];
     // Override point for customization after application launch.
     // Add the tab bar controller's current view as a subview of the window
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     
-    NSLog(@"did finish launching with options");
-    [self implementDB];
+    
     [self pullServerRecords];
     return YES;
 }
@@ -248,7 +249,7 @@
             //NSLog(@"News slide url %@", [[news_posts objectAtIndex:i] objectForKey:@"imageurl"]);
             int cat_web_id=[[[category_items objectAtIndex:i] objectForKey:@"id"] intValue];
             MessageItem *server_message=[[MessageItem alloc] init];
-            [server_message load_items_from_server:[message_items objectAtIndex:j]: cat_web_id];
+            [server_message load_items_from_server:[message_items objectAtIndex:j] data: cat_web_id];
             
             
         }
