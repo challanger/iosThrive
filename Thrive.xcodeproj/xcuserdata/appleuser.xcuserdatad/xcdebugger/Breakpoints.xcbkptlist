@@ -121,11 +121,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "iosMobile/iosMobileAppDelegate.m"
-         timestampString = "386730887.93344"
+         timestampString = "386871961.020195"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "114"
-         endingLineNumber = "114"
+         startingLineNumber = "121"
+         endingLineNumber = "121"
          landmarkName = "-implementDB"
          landmarkType = "5">
       </FileBreakpoint>
@@ -149,11 +149,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "iosMobile/MediaViewController.m"
-         timestampString = "384544810.344814"
+         timestampString = "386871755.637756"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "89"
-         endingLineNumber = "89"
+         startingLineNumber = "102"
+         endingLineNumber = "102"
          landmarkName = "-loadData"
          landmarkType = "5">
       </FileBreakpoint>
@@ -168,7 +168,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "14"
          endingLineNumber = "14"
-         landmarkName = "webID"
+         landmarkName = "@synthesize webID, mCategoryTitle, mCategoryAuthor, mTime, mImageView, playbackTimer, progressView, audioPlayer;"
          landmarkType = "19">
       </FileBreakpoint>
       <FileBreakpoint
@@ -177,11 +177,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "iosMobile/MediaViewController.m"
-         timestampString = "384546713.573866"
+         timestampString = "386871755.637756"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "181"
-         endingLineNumber = "181"
+         startingLineNumber = "194"
+         endingLineNumber = "194"
          landmarkName = "-loadMessage:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -191,11 +191,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "iosMobile/iosMobileAppDelegate.m"
-         timestampString = "386730887.93344"
+         timestampString = "386871961.020195"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "254"
-         endingLineNumber = "254"
+         startingLineNumber = "262"
+         endingLineNumber = "262"
          landmarkName = "-pullServerRecords"
          landmarkType = "5">
       </FileBreakpoint>

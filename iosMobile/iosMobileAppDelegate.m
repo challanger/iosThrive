@@ -23,6 +23,8 @@
 
 @synthesize tabBarController=_tabBarController;
 
+@synthesize loadServerTimer;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     NSLog(@"did finish launching with options");
@@ -32,9 +34,15 @@
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     
-    
-    [self pullServerRecords];
+    [self geServerRecords];
+    loadServerTimer = [NSTimer scheduledTimerWithTimeInterval:1200.0 target:self selector:@selector(geServerRecords) userInfo:nil repeats:YES];//every 20 min contact the server to pull any new records 
+    //[self pullServerRecords];
     return YES;
+}
+
+-(void)geServerRecords
+{
+    [self performSelectorInBackground:@selector(pullServerRecords) withObject:nil];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -206,6 +214,7 @@
 
 -(NSMutableArray *) pullServerRecords
 {
+    NSLog(@"pull records from the server");
     NSMutableArray *send;
     
     NSString* jsonURL = [NSString stringWithFormat:@"http://challengernet.com/thrive_remote.php"];

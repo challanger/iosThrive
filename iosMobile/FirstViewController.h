@@ -11,9 +11,11 @@
 
 @interface FirstViewController : UIViewController {
     UIImageView* mImageView;
+    NSTimer* loadNewsTimer;
 }
 
 @property (nonatomic, retain) IBOutlet UIImageView* imageView;
+@property (nonatomic, retain) NSTimer *loadNewsTimer;
 
 -(BOOL) loadData;
 

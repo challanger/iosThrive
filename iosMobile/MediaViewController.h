@@ -11,9 +11,11 @@
 
 @interface MediaViewController : UIViewController {
     UIScrollView *mUIScrollView;
+    NSTimer *loadMediaTimmer;
 }
 
 @property (nonatomic, retain) IBOutlet UIScrollView* scrollView;
+@property (nonatomic, retain) NSTimer *loadMediaTimmer;
 
 -(BOOL) loadData;
 -(void) loadMessage: (id)sender;

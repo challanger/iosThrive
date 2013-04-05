@@ -9,14 +9,16 @@
 #import <UIKit/UIKit.h>
 
 @interface iosMobileAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate> {
-
+    NSTimer* loadServerTimer;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 
 @property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
+@property (nonatomic, retain) NSTimer *loadServerTimer;
  
 -(void) implementDB;
+-(void)geServerRecords;
 -(NSMutableArray *) pullServerRecords;
 
 @end

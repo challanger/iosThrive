@@ -12,7 +12,7 @@
 
 @implementation FirstViewController
 @synthesize imageView = mImageView;
-
+@synthesize loadNewsTimer;
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
@@ -25,7 +25,17 @@
     self.imageView.clipsToBounds = YES;
     self.imageView.image = [UIImage imageNamed:@"thrive"];
     //load the rest of the news items 
+    //[self loadData];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
     [self loadData];
+    //reload the image view every 5 min
+    loadNewsTimer = [NSTimer scheduledTimerWithTimeInterval:300.0 target:self selector:@selector(loadData) userInfo:nil repeats:YES];
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [loadNewsTimer invalidate];
 }
 
 
@@ -55,7 +65,8 @@
 }
 
 -(BOOL) loadData
-{    
+{
+    NSLog(@"load news items");
     //pull the images to display on the News page 
     NSMutableArray *news_images=[News load_current_items_db];
     

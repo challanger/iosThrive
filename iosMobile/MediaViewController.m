@@ -14,6 +14,7 @@
 
 @implementation MediaViewController
 @synthesize scrollView = mUIScrollView;
+@synthesize loadMediaTimmer;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -46,7 +47,17 @@
     // Do any additional setup after loading the view from its nib.
     NSLog(@"Media tab loaded");
     self.navigationController.navigationBar.hidden = YES;
+    //[self loadData];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
     [self loadData];
+    //reload the media view every 5 min
+    loadMediaTimmer = [NSTimer scheduledTimerWithTimeInterval:300.0 target:self selector:@selector(loadData) userInfo:nil repeats:YES];
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [loadMediaTimmer invalidate];
 }
 
 - (void)viewDidUnload
@@ -63,7 +74,9 @@
 }
 
 -(BOOL) loadData
-{    
+{
+    NSLog(@"load media");
+    [[self.scrollView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     //pull the images to display on the News page 
     NSMutableArray *categories=[MessageCategory load_current_category_db];
     
