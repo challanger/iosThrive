@@ -41,6 +41,8 @@
 		859C351016F4DE4900DDC72C /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 859C350F16F4DE4900DDC72C /* JSONKit.m */; };
 		85A8444516D000FC00F32754 /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 85A8444416D000FC00F32754 /* News.m */; };
 		85A8444816D035A600F32754 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 85A8444716D035A600F32754 /* libsqlite3.dylib */; };
+		85E7605A1714D6B700C9B7DE /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85E760581714D6B700C9B7DE /* MapViewController.m */; };
+		85E7605B1714D6B700C9B7DE /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85E760591714D6B700C9B7DE /* MapViewController.xib */; };
 		85E870AF170D032F00DC5B38 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85E870AE170D032F00DC5B38 /* Default-568h@2x.png */; };
 		85EF29E616F12F2700EDADB2 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85EF29E516F12F2700EDADB2 /* MediaPlayer.framework */; };
 /* End PBXBuildFile section */
@@ -105,6 +107,9 @@
 		85A8444416D000FC00F32754 /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
 		85A8444716D035A600F32754 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		85CF34D616EBC41B00D7A285 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		85E760571714D6B700C9B7DE /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		85E760581714D6B700C9B7DE /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		85E760591714D6B700C9B7DE /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
 		85E870AE170D032F00DC5B38 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		85EF29E516F12F2700EDADB2 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -203,6 +208,9 @@
 				859896FF16CF2A30005EA551 /* SecondViewController.m */,
 				8598970116CF2A30005EA551 /* FirstView.xib */,
 				8598970416CF2A30005EA551 /* SecondView.xib */,
+				85E760571714D6B700C9B7DE /* MapViewController.h */,
+				85E760581714D6B700C9B7DE /* MapViewController.m */,
+				85E760591714D6B700C9B7DE /* MapViewController.xib */,
 				859896ED16CF2A30005EA551 /* Supporting Files */,
 			);
 			path = iosMobile;
@@ -323,6 +331,7 @@
 				8525F1D316E2BF7A008AD75E /* MediaViewController.xib in Resources */,
 				8540368416EADD820044213D /* MessageViewController.xib in Resources */,
 				85E870AF170D032F00DC5B38 /* Default-568h@2x.png in Resources */,
+				85E7605B1714D6B700C9B7DE /* MapViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,6 +379,7 @@
 				8592605D16E571FF008D21AE /* MessageItem.m in Sources */,
 				8540368316EADD820044213D /* MessageViewController.m in Sources */,
 				859C351016F4DE4900DDC72C /* JSONKit.m in Sources */,
+				85E7605A1714D6B700C9B7DE /* MapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

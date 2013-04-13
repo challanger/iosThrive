@@ -7,18 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <MapKit/MapKit.h>
 
 
-@interface SecondViewController : UIViewController<MKMapViewDelegate> {
+
+@interface SecondViewController : UIViewController {
     //<MKMapViewDelegate>
-    MKMapView *mapView;
+    
 }
 
-@property (nonatomic, retain) IBOutlet MKMapView *mapView;
+
 
 -(IBAction) linkToFacebook:(id)sender;
 -(IBAction) linkToTwitter:(id)sender;
 -(IBAction) linkeToEmail:(id)sender;
+-(IBAction) linkeToMap:(id)sender;
 
 @end

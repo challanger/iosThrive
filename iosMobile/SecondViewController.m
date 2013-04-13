@@ -8,28 +8,19 @@
 
 #import "SecondViewController.h"
 
+#import "MapViewController.h"
+
 
 @implementation SecondViewController
-@synthesize mapView;
+
 
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[self mapView] setDelegate:self];
-    //load the map with a pin at the church
-    mapView.showsUserLocation = YES;
-    CLLocationCoordinate2D thrive_location = CLLocationCoordinate2DMake(43.905004, -78.834118);//thrives location using longitude and latitude
-    MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
-    [annotation setCoordinate:thrive_location]; //set thrives location for the pin
-    [annotation setTitle:@"Thrive Community Church"];   //set the name of tje pin
-    [mapView setCenterCoordinate:thrive_location animated:true];    //center the map over thrive
-    [mapView addAnnotation:annotation]; //drop the pin
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(thrive_location,600,600); 
-    [mapView setRegion:region animated:true]; //set the map to be over thrive 
+    self.navigationController.navigationBar.hidden = YES;
     
-    [annotation release];
 }
 
 
@@ -51,7 +42,7 @@
 
 - (void)viewDidUnload
 {
-    self.mapView = nil;
+    
     [super viewDidUnload];
 
     // Release any retained subviews of the main view.
@@ -66,14 +57,15 @@
 
 -(IBAction) linkToFacebook:(id)sender
 {
-    NSString *facebookURLString= [NSString stringWithFormat:@"https://www.facebook.com/ithrivecc"];
+    NSString *facebookURLString= [NSString stringWithFormat:@"https://www.facebook.com/318011664926017"];
     NSURL *facebookURL = [[ NSURL alloc ] initWithString:facebookURLString];
     [[UIApplication sharedApplication] openURL:facebookURL];
 }
 
 -(IBAction) linkToTwitter:(id)sender
 {
-    NSString *facebookURLString= [NSString stringWithFormat:@"https://twitter.com/ithrivecc/"];
+    NSLog(@"twitter press");
+    NSString *facebookURLString= [NSString stringWithFormat:@"https://twitter.com/ithrivecc"];
     NSURL *facebookURL = [[ NSURL alloc ] initWithString:facebookURLString];
     [[UIApplication sharedApplication] openURL:facebookURL];
 }
@@ -83,6 +75,17 @@
     NSString *emailString= [NSString stringWithFormat:@"mailto:?to=aaron.dune2000@gmail.com"];
     NSURL *emailURL = [[ NSURL alloc ] initWithString:emailString];
     [[UIApplication sharedApplication] openURL:emailURL];
+}
+
+-(IBAction) linkeToMap:(id)sender
+{
+    //UIButton *button = (UIButton *)sender;
+    NSLog(@"map press");
+    
+    MapViewController *mapViewC = [[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil];
+    //messageView.modalTransitionStyle
+    //[self.parentViewController.parentViewController.navigationController pushViewController:mapViewC animated:YES];
+    [self.navigationController pushViewController:mapViewC animated:YES];
 }
 
 @end
