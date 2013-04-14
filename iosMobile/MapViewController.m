@@ -24,30 +24,30 @@
     return self;
 }
 
+- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
+{
+    //mapView.showsUserLocation = YES;
+    CLLocationCoordinate2D thrive_location = CLLocationCoordinate2DMake(43.905004, -78.834118);//thrives location using longitude and latitude
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(thrive_location,600,600);
+    [self.mapView setRegion:region animated:true]; //set the map to be over thrive
+    MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+    annotation.coordinate = thrive_location;
+    annotation.title=@"Thrive Community Church";
+    [self.mapView addAnnotation:annotation];
+}
+
 - (void)viewDidLoad
 {
-    self.mapView = nil;
+    //self.mapView = nil;
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    [[self mapView] setDelegate:self];
-    //load the map with a pin at the church
-    mapView.showsUserLocation = YES;
-    CLLocationCoordinate2D thrive_location = CLLocationCoordinate2DMake(43.905004, -78.834118);//thrives location using longitude and latitude
-    MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
-    [annotation setCoordinate:thrive_location]; //set thrives location for the pin
-    [annotation setTitle:@"Thrive Community Church"];   //set the name of tje pin
-    [mapView setCenterCoordinate:thrive_location animated:true];    //center the map over thrive
-    [mapView addAnnotation:annotation]; //drop the pin
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(thrive_location,600,600);
-    [mapView setRegion:region animated:true]; //set the map to be over thrive
-    NSLog(@"viewWillApppear2");
-    [annotation release];
+    self.mapView.delegate = self;
 }
 
 
 -(void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBar.hidden = NO;
-    NSLog(@"viewWillApppear");
+    self.navigationItem.title=@"Service Time & Map";
+    //[annotation release];
     
 }
 
