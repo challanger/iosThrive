@@ -213,7 +213,7 @@
     //pull the id for the news item from the json data
     NSString *json_id= [JSONData objectForKey:@"id"];
     int jID= [json_id intValue];
-    int last_synced_json = [[JSONData objectForKey:@"last_modified"] intValue];
+    int last_synced_json = [[JSONData objectForKey:@"serial"] intValue];
     
     //try to load the data from the serve 
     [self load_item_db:jID];
@@ -226,9 +226,10 @@
         name = [JSONData objectForKey:@"title"];
         author = [JSONData objectForKey:@"author"];
         active = 1;
-        date = [[JSONData objectForKey:@"date"] intValue];
+        long long temp_date=[[JSONData objectForKey:@"date"] longLongValue];
+        date = temp_date/1000;
         image_loaded = 0;
-        last_synced = [[JSONData objectForKey:@"last_modified"] intValue];
+        last_synced = [[JSONData objectForKey:@"serial"] intValue];
         
         [self save_to_db]; 
         NSLog(@"createing %i",[self get_web_id]);
@@ -256,9 +257,10 @@
             name = [JSONData objectForKey:@"title"];
             author = [JSONData objectForKey:@"author"];
             active = 1;
-            date = [[JSONData objectForKey:@"date"] intValue];
+            long long temp_date=[[JSONData objectForKey:@"date"] longLongValue];
+            date = temp_date/1000;
             image_loaded = 0;
-            last_synced = [[JSONData objectForKey:@"last_modified"] intValue];  
+            last_synced = [[JSONData objectForKey:@"serial"] intValue];  
             //NSLog(@"update %i",[self get_web_id]);
             [self save_to_db]; 
         }
@@ -282,7 +284,7 @@
     if(sqlite3_open(dbpath,&thriveDB)==SQLITE_OK)
     {
         //Get the unix timestamp
-        NSString *loadSQL = [NSString stringWithFormat: @"SELECT * from MESSAGE_CATEGORY WHERE active=1 order by id desc"];
+        NSString *loadSQL = [NSString stringWithFormat: @"SELECT * from MESSAGE_CATEGORY WHERE active=1 order by date desc"];
         const char *query_stmt = [loadSQL UTF8String];
         if(sqlite3_prepare_v2(thriveDB,query_stmt,-1,&statement,NULL)==SQLITE_OK)
         {

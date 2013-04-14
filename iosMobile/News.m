@@ -228,7 +228,9 @@
     //pull the id for the news item from the json data
     NSString *json_id= [JSONData objectForKey:@"id"];
     int jID= [json_id intValue];
-    int last_synced_json = [[JSONData objectForKey:@"last_modified"] intValue];
+    int last_synced_json = [[JSONData objectForKey:@"serial"] intValue];
+    
+    NSLog(@"Web ID %i",jID);
     
     //try to load the data from the serve 
     [self load_item_db:jID];
@@ -241,11 +243,19 @@
         link = [JSONData objectForKey:@"link"];
         caption = [JSONData objectForKey:@"caption"];
         active = 1;
-        start_date = [[JSONData objectForKey:@"start_date"] intValue];
-        end_date = [[JSONData objectForKey:@"expires"] intValue];
-        mobile_loaded = 0;
-        last_synced = [[JSONData objectForKey:@"last_modified"] intValue];
         
+        NSMutableString *temp_start_date=[JSONData objectForKey:@"starts"];
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+        [dateFormat setDateFormat:@"m/d/yy"];
+        NSDate *temp_date= [dateFormat dateFromString:temp_start_date];
+        start_date = [temp_date timeIntervalSince1970];
+        long long temp_date_expire=[[JSONData objectForKey:@"expires"] longLongValue];
+        end_date = temp_date_expire/1000;
+        mobile_loaded = 0;
+        last_synced = [[JSONData objectForKey:@"serial"] intValue];
+        
+        //[dateFormat release];
+        //[temp_date release];
         [self save_to_db]; 
     }
     else 
@@ -269,10 +279,19 @@
             link = [JSONData objectForKey:@"link"];
             caption = [JSONData objectForKey:@"caption"];
             active = 1;
-            start_date = [[JSONData objectForKey:@"start_date"] intValue];
-            end_date = [[JSONData objectForKey:@"expires"] intValue];
+            
+            NSMutableString *temp_start_date=[JSONData objectForKey:@"starts"];
+            NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+            [dateFormat setDateFormat:@"m/d/yy"];
+            NSDate *temp_date= [dateFormat dateFromString:temp_start_date];
+            start_date = [temp_date timeIntervalSince1970];
+            long long temp_date_expire=[[JSONData objectForKey:@"expires"] longLongValue];
+            end_date = temp_date_expire/1000;
             mobile_loaded = 0;
-            last_synced = [[JSONData objectForKey:@"last_modified"] intValue];
+            last_synced = [[JSONData objectForKey:@"serial"] intValue];
+            
+            //[dateFormat release];
+            //[temp_date release];
             
             [self save_to_db];            
         }

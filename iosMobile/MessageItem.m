@@ -49,7 +49,15 @@
 
 -(NSString *) get_formated_date
 {
-    return @"01/06/2013";
+    NSTimeInterval _interval=date;
+    NSDate *date_temp = [NSDate dateWithTimeIntervalSince1970:_interval];
+    NSDateFormatter *_formatter=[[NSDateFormatter alloc]init];
+    [_formatter setLocale:[NSLocale currentLocale]];
+    [_formatter setDateFormat:@"dd/MM/yy"];
+    NSMutableString *temp = [NSMutableString stringWithFormat:@"%@ ",[_formatter stringFromDate:date_temp]];
+    return temp;
+    //return [_formatter stringFromDate:date_temp];
+    //return @"01/06/2013";
 }
 
 //pull a single item from the db by the id
@@ -112,13 +120,14 @@
     if(sqlite3_open(dbpath,&thriveDB)==SQLITE_OK)
     {
         NSString *saveSQL;
+                             
         if(n_id==0)
         {
-            saveSQL = [NSString stringWithFormat: @"INSERT INTO MESSAGE_FILES (webID,category,file,name,date,last_synced) VALUES (%i,%i,'%@','%@',%i,%i)",web_id,category_id,file,name,date,last_synced];
+            saveSQL = [NSString stringWithFormat: @"INSERT INTO MESSAGE_FILES (webID,category,file,name,date,last_synced) VALUES (%i,%i,'%@',\"%@\",%i,%i)",web_id,category_id,file,name,date,last_synced];
         }
         else 
         {
-            saveSQL = [NSString stringWithFormat: @"UPDATE MESSAGE_FILES set category=%i, file='%@', name='%@', date=%i, last_synced=%i WHERE webID=%i",category_id,file,name,date,last_synced,web_id];
+            saveSQL = [NSString stringWithFormat: @"UPDATE MESSAGE_FILES set category=%i, file='%@', name=\"%@\", date=%i, last_synced=%i WHERE webID=%i",category_id,file,name,date,last_synced,web_id];
         }
         const char *query_stmt = [saveSQL UTF8String];
         if(sqlite3_prepare_v2(thriveDB,query_stmt,-1,&statement,NULL)==SQLITE_OK)
@@ -154,7 +163,7 @@
     //pull the id for the news item from the json data
     NSString *json_id= [serverData objectForKey:@"id"];
     int jID= [json_id intValue];
-    int last_synced_json = [[serverData objectForKey:@"last_modified"] intValue];
+    int last_synced_json = [[serverData objectForKey:@"serial"] intValue];
     
     //try to load the data from the serve 
     [self load_item_db:jID];
@@ -166,8 +175,11 @@
         file = [serverData objectForKey:@"url"];
         name = [serverData objectForKey:@"title"];
         active = 1;
-        date = [[serverData objectForKey:@"date"] intValue];
-        last_synced = [[serverData objectForKey:@"last_modified"] intValue];
+        long long temp_date=[[serverData objectForKey:@"date"] longLongValue];
+        date = temp_date/1000;
+        last_synced = [[serverData objectForKey:@"serial"] intValue];
+        
+        NSLog(@"Create Item %i",web_id);
         
         [self save_to_db]; 
     }
@@ -181,8 +193,9 @@
             file = [serverData objectForKey:@"url"];
             name = [serverData objectForKey:@"title"];
             active = 1;
-            date = [[serverData objectForKey:@"date"] intValue];
-            last_synced = [[serverData objectForKey:@"last_modified"] intValue];
+            long long temp_date=[[serverData objectForKey:@"date"] longLongValue];
+            date = temp_date/1000;
+            last_synced = [[serverData objectForKey:@"serial"] intValue];
             
             [self save_to_db];            
         }

@@ -10,6 +10,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 
 @interface MessageViewController : UIViewController  {
+    UILabel *mTitle;
     UILabel *mCategoryTitle;
     UILabel *mCategoryAuthor;
     //UINavigationBar *mMessageTitle;
@@ -24,6 +25,7 @@
     bool audioPlaying;
 }
 
+@property (nonatomic, retain) IBOutlet UILabel *mTitle;
 @property (nonatomic, retain) IBOutlet UILabel *mCategoryTitle;
 @property (nonatomic, retain) IBOutlet UILabel *mCategoryAuthor;
 @property (nonatomic, retain) IBOutlet UILabel *mTime;

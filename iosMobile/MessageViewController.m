@@ -11,7 +11,7 @@
 #import "MessageItem.h"
 
 @implementation MessageViewController
-@synthesize webID, mCategoryTitle, mCategoryAuthor, mTime, mImageView, playbackTimer, progressView, audioPlayer;
+@synthesize webID, mTitle, mCategoryTitle, mCategoryAuthor, mTime, mImageView, playbackTimer, progressView, audioPlayer;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -170,12 +170,16 @@
     if([mItem load_item_db:webID_int])
     {
         self.navigationItem.title=[mItem get_name];
+        [mTitle setText:[mItem get_name]];
+        mTitle.font = [UIFont fontWithName:@"Arial" size:20];
+        mTitle.textColor = [UIColor whiteColor];
+        
         [self loadAudio: [mItem get_file]];
         
         if([mCategory load_item_db:[mItem get_category]])
         {
             [mCategoryTitle setText:[mCategory get_name]];
-            mCategoryTitle.font = [UIFont fontWithName:@"Arial" size:27];
+            mCategoryTitle.font = [UIFont fontWithName:@"Arial" size:17];
             mCategoryTitle.textColor = [UIColor whiteColor];
             
             [mCategoryAuthor setText:[mCategory get_author]];

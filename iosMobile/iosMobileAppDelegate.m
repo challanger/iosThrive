@@ -217,7 +217,8 @@
     NSLog(@"pull records from the server");
     NSMutableArray *send;
     
-    NSString* jsonURL = [NSString stringWithFormat:@"http://challengernet.com/thrive_remote.php"];
+    //NSString* jsonURL = [NSString stringWithFormat:@"http://challengernet.com/thrive_remote.php"];
+    NSString* jsonURL = [NSString stringWithFormat:@"http://ithrive.ca/remote/mobile/"];
     NSError* err = nil;
     NSURLResponse* responce = nil;
     NSMutableURLRequest* request = [[[NSMutableURLRequest alloc] init] autorelease];
@@ -226,15 +227,18 @@
     [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
     [request setTimeoutInterval:30];
     NSData* jsonData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responce error:&err];
+    NSLog(@" Json data %@",responce);
     NSDictionary *resultsDictionary = [jsonData objectFromJSONData];
+    NSLog(@"data found on the server, num entries %i",[resultsDictionary count]);
     
     //run through the news posts 
     NSArray *news_posts=[resultsDictionary objectForKey:@"slides"];
+    NSLog(@"Number of news entries %i",[news_posts count]);
     int i=0;
     for(i=0; i< [news_posts count]; i++)
     {
         
-        //NSLog(@"News slide url %@", [[news_posts objectAtIndex:i] objectForKey:@"imageurl"]);
+        NSLog(@"News slide url %@", [[news_posts objectAtIndex:i] objectForKey:@"imageurl"]);
         News *server_news=[[News alloc] init];
         [server_news load_items_from_server:[news_posts objectAtIndex:i]];
         

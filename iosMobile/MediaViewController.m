@@ -134,7 +134,7 @@
             //NSLog(@"Message name %@",[mItem get_name]);
             
             UIButton *message_name = [UIButton buttonWithType:UIButtonTypeCustom];
-            message_name.frame = CGRectMake(15,x,195,35);
+            message_name.frame = CGRectMake(15,x,295,30);
             [message_name.titleLabel setTextAlignment:UITextAlignmentLeft];
             message_name.contentHorizontalAlignment =UIControlContentHorizontalAlignmentLeft;
             message_name.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
@@ -151,18 +151,21 @@
             
             [self.scrollView addSubview:message_name];
             
-            UILabel *message_date = [[[UILabel alloc] initWithFrame:CGRectMake(210,x,100,35)] autorelease];
-            [message_date setText: [mItem get_formated_date]];
+            x=x+30;
+            UIButton *message_date = [UIButton buttonWithType:UIButtonTypeCustom];
+            message_date.frame = CGRectMake(15,x,295,10);
+            [message_date setTitle: [mItem get_formated_date] forState:UIControlStateNormal];
             if((item_count%2)==0)
                 message_date.backgroundColor = black_color;
             else 
                 message_date.backgroundColor = grey_color;
-            message_date.font = [UIFont fontWithName:@"Arial" size:16];
-            message_date.textColor = [UIColor whiteColor];
-            message_date.textAlignment = UITextAlignmentRight;
+            [message_date.titleLabel setFont:[UIFont fontWithName:@"Arial" size:10]];
+            [message_date.titleLabel setTextColor:[UIColor whiteColor]];
+            message_date.contentHorizontalAlignment =UIControlContentHorizontalAlignmentRight;
+            [message_date addTarget:self action:@selector(loadMessage:) forControlEvents:(UIControlEvents)UIControlEventTouchUpInside];
             [self.scrollView addSubview:message_date];
             
-            x=x+35;
+            x=x+10;
             item_count++;
             
         }

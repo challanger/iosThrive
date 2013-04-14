@@ -93,11 +93,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "iosMobile/News.m"
-         timestampString = "385156719.441573"
+         timestampString = "387656823.823282"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "324"
-         endingLineNumber = "324"
+         startingLineNumber = "343"
+         endingLineNumber = "343"
          landmarkName = "+load_current_items_db"
          landmarkType = "5">
       </FileBreakpoint>
@@ -107,11 +107,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "iosMobile/News.m"
-         timestampString = "385156719.441573"
+         timestampString = "387656823.823282"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "324"
-         endingLineNumber = "324"
+         startingLineNumber = "343"
+         endingLineNumber = "343"
          landmarkName = "+load_current_items_db"
          landmarkType = "5">
       </FileBreakpoint>
@@ -168,7 +168,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "14"
          endingLineNumber = "14"
-         landmarkName = "@synthesize webID, mCategoryTitle, mCategoryAuthor, mTime, mImageView, playbackTimer, progressView, audioPlayer;"
+         landmarkName = "@synthesize webID, mTitle, mCategoryTitle, mCategoryAuthor, mTime, mImageView, playbackTimer, progressView, audioPlayer;"
          landmarkType = "19">
       </FileBreakpoint>
       <FileBreakpoint
@@ -177,11 +177,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "iosMobile/MediaViewController.m"
-         timestampString = "386871755.637756"
+         timestampString = "387658588.738715"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "194"
-         endingLineNumber = "194"
+         startingLineNumber = "197"
+         endingLineNumber = "197"
          landmarkName = "-loadMessage:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -191,11 +191,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "iosMobile/iosMobileAppDelegate.m"
-         timestampString = "386871961.020195"
+         timestampString = "387580171.188103"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "262"
-         endingLineNumber = "262"
+         startingLineNumber = "266"
+         endingLineNumber = "266"
          landmarkName = "-pullServerRecords"
          landmarkType = "5">
       </FileBreakpoint>
@@ -205,7 +205,7 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "iosMobile/News.m"
-         timestampString = "385151792.54504"
+         timestampString = "387579455.251227"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "231"
@@ -219,7 +219,7 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "iosMobile/News.m"
-         timestampString = "385151792.54504"
+         timestampString = "387579455.251227"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "231"
@@ -238,6 +238,19 @@
          startingLineNumber = "88"
          endingLineNumber = "88"
          landmarkName = "-linkeToMap:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "iosMobile/iosMobileAppDelegate.m"
+         timestampString = "387580171.188103"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "232"
+         endingLineNumber = "232"
+         landmarkName = "-pullServerRecords"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
