@@ -11,7 +11,7 @@
 #import "MessageItem.h"
 
 @implementation MessageViewController
-@synthesize webID, mTitle, mCategoryTitle, mCategoryAuthor, mTime, mImageView, playbackTimer, progressView, audioPlayer;
+@synthesize webID, mTitle, mCategoryTitle, mCategoryAuthor, mTime, mImageView, playbackTimer, progressView, audioPlayer,playButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -82,10 +82,19 @@
     {
         //audioPlaying = FALSE;
         [audioPlayer pause];
+        [playButton setImage:[UIImage imageNamed:@"30-circle-play-blue.png"] forState:UIControlStateNormal];
     }
     else
     {
+        spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        spinner.center = CGPointMake(100, 100);
+        spinner.transform = CGAffineTransformMakeScale(2, 2);
+        spinner.hidesWhenStopped = YES;
+        [self.view addSubview:spinner];
+        [spinner startAnimating];
+        
         [audioPlayer play];
+        [playButton setImage:[UIImage imageNamed:@"29-circle-pause-blue.png"] forState:UIControlStateNormal];
         //audioPlaying = TRUE;
     }
 }
@@ -135,6 +144,7 @@
 {
     if ((audioPlayer.loadState & MPMovieLoadStatePlaythroughOK) == MPMovieLoadStatePlaythroughOK)
     {
+        [spinner stopAnimating];
        // NSLog(@"content play length is %g seconds", audioPlayer.duration);
         //NSLog(@"current time in %g seconds",audioPlayer.currentPlaybackTime);
         
@@ -146,6 +156,7 @@
 {
     if ((audioPlayer.loadState & MPMovieLoadStatePlaythroughOK) == MPMovieLoadStatePlaythroughOK)
     {
+        [spinner stopAnimating];
         if(audioPlayer.playbackState == MPMoviePlaybackStatePlaying)
             playbackTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTime) userInfo:nil repeats:YES];
         else if(audioPlayer.playbackState == MPMoviePlaybackStatePaused)

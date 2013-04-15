@@ -168,7 +168,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "14"
          endingLineNumber = "14"
-         landmarkName = "@synthesize webID, mTitle, mCategoryTitle, mCategoryAuthor, mTime, mImageView, playbackTimer, progressView, audioPlayer;"
+         landmarkName = "@synthesize webID, mTitle, mCategoryTitle, mCategoryAuthor, mTime, mImageView, playbackTimer, progressView, audioPlayer,playButton;"
          landmarkType = "19">
       </FileBreakpoint>
       <FileBreakpoint

@@ -20,6 +20,14 @@
 		8525F1D316E2BF7A008AD75E /* MediaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8525F1D116E2BF7A008AD75E /* MediaViewController.xib */; };
 		8540368316EADD820044213D /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8540368116EADD820044213D /* MessageViewController.m */; };
 		8540368416EADD820044213D /* MessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8540368216EADD820044213D /* MessageViewController.xib */; };
+		85922CB1171B6BA10091FEB2 /* 53-house@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85922CB0171B6BA10091FEB2 /* 53-house@2x.png */; };
+		85922CB3171B6BF20091FEB2 /* 53-house.png in Resources */ = {isa = PBXBuildFile; fileRef = 85922CB2171B6BF20091FEB2 /* 53-house.png */; };
+		85922CB6171B6C3E0091FEB2 /* 275-broadcast.png in Resources */ = {isa = PBXBuildFile; fileRef = 85922CB4171B6C3E0091FEB2 /* 275-broadcast.png */; };
+		85922CB7171B6C3E0091FEB2 /* 275-broadcast@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85922CB5171B6C3E0091FEB2 /* 275-broadcast@2x.png */; };
+		85922CBA171B6C500091FEB2 /* 287-at.png in Resources */ = {isa = PBXBuildFile; fileRef = 85922CB8171B6C500091FEB2 /* 287-at.png */; };
+		85922CBB171B6C500091FEB2 /* 287-at@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85922CB9171B6C500091FEB2 /* 287-at@2x.png */; };
+		85922CC8171B7C320091FEB2 /* 30-circle-play-blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 85922CC6171B7C320091FEB2 /* 30-circle-play-blue.png */; };
+		85922CC9171B7C320091FEB2 /* 29-circle-pause-blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 85922CC7171B7C320091FEB2 /* 29-circle-pause-blue.png */; };
 		8592605D16E571FF008D21AE /* MessageItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8592605C16E571FF008D21AE /* MessageItem.m */; };
 		859896E716CF2A30005EA551 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 859896E616CF2A30005EA551 /* UIKit.framework */; };
 		859896E916CF2A30005EA551 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 859896E816CF2A30005EA551 /* Foundation.framework */; };
@@ -76,6 +84,14 @@
 		8540368016EADD810044213D /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
 		8540368116EADD820044213D /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
 		8540368216EADD820044213D /* MessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageViewController.xib; sourceTree = "<group>"; };
+		85922CB0171B6BA10091FEB2 /* 53-house@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "53-house@2x.png"; sourceTree = "<group>"; };
+		85922CB2171B6BF20091FEB2 /* 53-house.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "53-house.png"; sourceTree = "<group>"; };
+		85922CB4171B6C3E0091FEB2 /* 275-broadcast.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "275-broadcast.png"; sourceTree = "<group>"; };
+		85922CB5171B6C3E0091FEB2 /* 275-broadcast@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "275-broadcast@2x.png"; sourceTree = "<group>"; };
+		85922CB8171B6C500091FEB2 /* 287-at.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "287-at.png"; sourceTree = "<group>"; };
+		85922CB9171B6C500091FEB2 /* 287-at@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "287-at@2x.png"; sourceTree = "<group>"; };
+		85922CC6171B7C320091FEB2 /* 30-circle-play-blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "30-circle-play-blue.png"; sourceTree = "<group>"; };
+		85922CC7171B7C320091FEB2 /* 29-circle-pause-blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "29-circle-pause-blue.png"; sourceTree = "<group>"; };
 		8592605B16E571FF008D21AE /* MessageItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageItem.h; sourceTree = "<group>"; };
 		8592605C16E571FF008D21AE /* MessageItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageItem.m; sourceTree = "<group>"; };
 		859896E216CF2A30005EA551 /* iosMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -219,6 +235,14 @@
 		859896ED16CF2A30005EA551 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				85922CC6171B7C320091FEB2 /* 30-circle-play-blue.png */,
+				85922CC7171B7C320091FEB2 /* 29-circle-pause-blue.png */,
+				85922CB8171B6C500091FEB2 /* 287-at.png */,
+				85922CB9171B6C500091FEB2 /* 287-at@2x.png */,
+				85922CB4171B6C3E0091FEB2 /* 275-broadcast.png */,
+				85922CB5171B6C3E0091FEB2 /* 275-broadcast@2x.png */,
+				85922CB2171B6BF20091FEB2 /* 53-house.png */,
+				85922CB0171B6BA10091FEB2 /* 53-house@2x.png */,
 				8525F1CA16E29B36008AD75E /* twitter.png */,
 				8525F1C816E2985B008AD75E /* Facebook.png */,
 				8525F1B316D8118C008AD75E /* thrive.png */,
@@ -332,6 +356,14 @@
 				8540368416EADD820044213D /* MessageViewController.xib in Resources */,
 				85E870AF170D032F00DC5B38 /* Default-568h@2x.png in Resources */,
 				85E7605B1714D6B700C9B7DE /* MapViewController.xib in Resources */,
+				85922CB1171B6BA10091FEB2 /* 53-house@2x.png in Resources */,
+				85922CB3171B6BF20091FEB2 /* 53-house.png in Resources */,
+				85922CB6171B6C3E0091FEB2 /* 275-broadcast.png in Resources */,
+				85922CB7171B6C3E0091FEB2 /* 275-broadcast@2x.png in Resources */,
+				85922CBA171B6C500091FEB2 /* 287-at.png in Resources */,
+				85922CBB171B6C500091FEB2 /* 287-at@2x.png in Resources */,
+				85922CC8171B7C320091FEB2 /* 30-circle-play-blue.png in Resources */,
+				85922CC9171B7C320091FEB2 /* 29-circle-pause-blue.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

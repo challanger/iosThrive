@@ -23,6 +23,8 @@
     UIProgressView *progressView;
     MPMoviePlayerController *audioPlayer;
     bool audioPlaying;
+    
+    UIActivityIndicatorView *spinner;
 }
 
 @property (nonatomic, retain) IBOutlet UILabel *mTitle;
@@ -33,6 +35,7 @@
 @property (nonatomic, retain) MPMoviePlayerController *audioPlayer;
 @property (nonatomic, retain) NSTimer *playbackTimer;
 @property (nonatomic, retain) IBOutlet UIProgressView *progressView;
+@property (nonatomic, retain) IBOutlet UIButton *playButton;
 
 @property (nonatomic, retain) NSString *webID;
 
