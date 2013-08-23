@@ -226,10 +226,9 @@
         name = [JSONData objectForKey:@"title"];
         author = [JSONData objectForKey:@"author"];
         active = 1;
-        long long temp_date=[[JSONData objectForKey:@"date"] longLongValue];
-        date = temp_date/1000;
+        date = [[JSONData objectForKey:@"date"] intValue];
         image_loaded = 0;
-        last_synced = [[JSONData objectForKey:@"serial"] intValue];
+        last_synced = [[JSONData objectForKey:@"last_modified"] intValue];
         
         [self save_to_db]; 
         NSLog(@"createing %i",[self get_web_id]);
@@ -257,10 +256,9 @@
             name = [JSONData objectForKey:@"title"];
             author = [JSONData objectForKey:@"author"];
             active = 1;
-            long long temp_date=[[JSONData objectForKey:@"date"] longLongValue];
-            date = temp_date/1000;
+            date = [[JSONData objectForKey:@"date"] intValue];
             image_loaded = 0;
-            last_synced = [[JSONData objectForKey:@"serial"] intValue];  
+            last_synced = [[JSONData objectForKey:@"last_modified"] intValue];
             //NSLog(@"update %i",[self get_web_id]);
             [self save_to_db]; 
         }

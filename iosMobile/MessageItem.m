@@ -175,15 +175,12 @@
         file = [serverData objectForKey:@"url"];
         name = [serverData objectForKey:@"title"];
         active = 1;
-        long long temp_date=[[serverData objectForKey:@"date"] longLongValue];
-        date = temp_date/1000;
-        last_synced = [[serverData objectForKey:@"serial"] intValue];
+        date = [[serverData objectForKey:@"date"] intValue];
+        last_synced = [[serverData objectForKey:@"last_modified"] intValue];
         
-        NSLog(@"Create Item %i",web_id);
-        
-        [self save_to_db]; 
+        [self save_to_db];
     }
-    else 
+    else
     {
         //Existing record
         if(last_synced< last_synced_json) //only update if the old record is out of date
@@ -193,9 +190,8 @@
             file = [serverData objectForKey:@"url"];
             name = [serverData objectForKey:@"title"];
             active = 1;
-            long long temp_date=[[serverData objectForKey:@"date"] longLongValue];
-            date = temp_date/1000;
-            last_synced = [[serverData objectForKey:@"serial"] intValue];
+            date = [[serverData objectForKey:@"date"] intValue];
+            last_synced = [[serverData objectForKey:@"last_modified"] intValue];
             
             [self save_to_db];            
         }

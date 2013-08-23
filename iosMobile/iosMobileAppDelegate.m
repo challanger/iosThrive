@@ -218,7 +218,8 @@
     NSMutableArray *send;
     
     //NSString* jsonURL = [NSString stringWithFormat:@"http://challengernet.com/thrive_remote.php"];
-    NSString* jsonURL = [NSString stringWithFormat:@"http://ithrive.ca/remote/mobile/"];
+    //NSString* jsonURL = [NSString stringWithFormat:@"http://ithrive.ca/remote/mobile/"];
+    NSString* jsonURL = [NSString stringWithFormat:@"http://challengernet.com/mobile/ithrive/index.php/mobile/index/0"];
     NSError* err = nil;
     NSURLResponse* responce = nil;
     NSMutableURLRequest* request = [[[NSMutableURLRequest alloc] init] autorelease];

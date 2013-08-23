@@ -244,15 +244,10 @@
         caption = [JSONData objectForKey:@"caption"];
         active = 1;
         
-        NSMutableString *temp_start_date=[JSONData objectForKey:@"starts"];
-        NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
-        [dateFormat setDateFormat:@"m/d/yy"];
-        NSDate *temp_date= [dateFormat dateFromString:temp_start_date];
-        start_date = [temp_date timeIntervalSince1970];
-        long long temp_date_expire=[[JSONData objectForKey:@"expires"] longLongValue];
-        end_date = temp_date_expire/1000;
+        start_date = [[JSONData objectForKey:@"start_date"] intValue];
+        end_date = [[JSONData objectForKey:@"expires"] intValue];
         mobile_loaded = 0;
-        last_synced = [[JSONData objectForKey:@"serial"] intValue];
+        last_synced = [[JSONData objectForKey:@"last_modified"] intValue];
         
         //[dateFormat release];
         //[temp_date release];
@@ -279,16 +274,10 @@
             link = [JSONData objectForKey:@"link"];
             caption = [JSONData objectForKey:@"caption"];
             active = 1;
-            
-            NSMutableString *temp_start_date=[JSONData objectForKey:@"starts"];
-            NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
-            [dateFormat setDateFormat:@"m/d/yy"];
-            NSDate *temp_date= [dateFormat dateFromString:temp_start_date];
-            start_date = [temp_date timeIntervalSince1970];
-            long long temp_date_expire=[[JSONData objectForKey:@"expires"] longLongValue];
-            end_date = temp_date_expire/1000;
+            start_date = [[JSONData objectForKey:@"start_date"] intValue];
+            end_date = [[JSONData objectForKey:@"expires"] intValue];
             mobile_loaded = 0;
-            last_synced = [[JSONData objectForKey:@"serial"] intValue];
+            last_synced = [[JSONData objectForKey:@"last_modified"] intValue];
             
             //[dateFormat release];
             //[temp_date release];
