@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "/usr/include/sqlite3.h"
+#import "sqlite3.h"
 
 @interface VariableStore : NSObject {
     sqlite3 *thriveDB_local;  //Declare a pointer to the db file

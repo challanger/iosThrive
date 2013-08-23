@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "/usr/include/sqlite3.h"
+#import "sqlite3.h"
 
 @interface MessageCategory : NSObject {
     int n_id;
