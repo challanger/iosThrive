@@ -46,7 +46,7 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBar.hidden = NO;
-    self.navigationItem.title=@"Service Time & Map";
+    self.navigationItem.title=@"Map";
     //[annotation release];
     
 }

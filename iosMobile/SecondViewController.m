@@ -72,7 +72,7 @@
 
 -(IBAction) linkeToEmail:(id)sender
 {
-    NSString *emailString= [NSString stringWithFormat:@"mailto:?to=aaron.dune2000@gmail.com"];
+    NSString *emailString= [NSString stringWithFormat:@"mailto:?to=info@ithrive.ca"];
     NSURL *emailURL = [[ NSURL alloc ] initWithString:emailString];
     [[UIApplication sharedApplication] openURL:emailURL];
 }
