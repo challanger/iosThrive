@@ -380,7 +380,7 @@
     }
     else 
     {
-        [imageArray addObject:[UIImage imageNamed:@"thrive"]];
+        [imageArray addObject:[UIImage imageNamed:@"message_category_default_100_100"]];
     }
     //[news_items relase];
     

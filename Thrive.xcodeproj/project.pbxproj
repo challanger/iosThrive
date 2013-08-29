@@ -47,6 +47,20 @@
 		8598971A16CF2A31005EA551 /* iosMobileTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 8598971916CF2A31005EA551 /* iosMobileTests.h */; };
 		8598971C16CF2A31005EA551 /* iosMobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8598971B16CF2A31005EA551 /* iosMobileTests.m */; };
 		859C351016F4DE4900DDC72C /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 859C350F16F4DE4900DDC72C /* JSONKit.m */; };
+		859DBC0C17C6E6D1004366B4 /* 194-note-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 859DBC0A17C6E6D1004366B4 /* 194-note-2.png */; };
+		859DBC0D17C6E6D1004366B4 /* 194-note-2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 859DBC0B17C6E6D1004366B4 /* 194-note-2@2x.png */; };
+		859DBC1D17C6F701004366B4 /* MyUnderlinedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 859DBC1C17C6F701004366B4 /* MyUnderlinedLabel.m */; };
+		859DBC2317C6FABC004366B4 /* Connect_address.png in Resources */ = {isa = PBXBuildFile; fileRef = 859DBC1E17C6FABC004366B4 /* Connect_address.png */; };
+		859DBC2417C6FABC004366B4 /* Connect_email.png in Resources */ = {isa = PBXBuildFile; fileRef = 859DBC1F17C6FABC004366B4 /* Connect_email.png */; };
+		859DBC2517C6FABC004366B4 /* Connect_facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 859DBC2017C6FABC004366B4 /* Connect_facebook.png */; };
+		859DBC2617C6FABC004366B4 /* Connect_twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 859DBC2117C6FABC004366B4 /* Connect_twitter.png */; };
+		859DBC2717C6FABC004366B4 /* header_connect.png in Resources */ = {isa = PBXBuildFile; fileRef = 859DBC2217C6FABC004366B4 /* header_connect.png */; };
+		859DBC2C17CEC23E004366B4 /* app_icon_57_57.png in Resources */ = {isa = PBXBuildFile; fileRef = 859DBC2817CEC196004366B4 /* app_icon_57_57.png */; };
+		859DBC2D17CEC243004366B4 /* app_icon_114_114.png in Resources */ = {isa = PBXBuildFile; fileRef = 859DBC2A17CEC19B004366B4 /* app_icon_114_114.png */; };
+		859DBC2F17CEC3EE004366B4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 859DBC2E17CEC3EE004366B4 /* Default.png */; };
+		859DBC3117CEC3FA004366B4 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 859DBC3017CEC3FA004366B4 /* Default@2x.png */; };
+		859DBC3417CECD52004366B4 /* message_category_default_100_100.png in Resources */ = {isa = PBXBuildFile; fileRef = 859DBC3217CECD52004366B4 /* message_category_default_100_100.png */; };
+		859DBC3517CECD52004366B4 /* slide_default_260_250.png in Resources */ = {isa = PBXBuildFile; fileRef = 859DBC3317CECD52004366B4 /* slide_default_260_250.png */; };
 		85A8444516D000FC00F32754 /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 85A8444416D000FC00F32754 /* News.m */; };
 		85A8444816D035A600F32754 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 85A8444716D035A600F32754 /* libsqlite3.dylib */; };
 		85E7605A1714D6B700C9B7DE /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85E760581714D6B700C9B7DE /* MapViewController.m */; };
@@ -119,6 +133,21 @@
 		8598971B16CF2A31005EA551 /* iosMobileTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iosMobileTests.m; sourceTree = "<group>"; };
 		859C350D16F4DE4100DDC72C /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		859C350F16F4DE4900DDC72C /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		859DBC0A17C6E6D1004366B4 /* 194-note-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "194-note-2.png"; sourceTree = "<group>"; };
+		859DBC0B17C6E6D1004366B4 /* 194-note-2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "194-note-2@2x.png"; sourceTree = "<group>"; };
+		859DBC1B17C6F701004366B4 /* MyUnderlinedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyUnderlinedLabel.h; sourceTree = "<group>"; };
+		859DBC1C17C6F701004366B4 /* MyUnderlinedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyUnderlinedLabel.m; sourceTree = "<group>"; };
+		859DBC1E17C6FABC004366B4 /* Connect_address.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Connect_address.png; sourceTree = "<group>"; };
+		859DBC1F17C6FABC004366B4 /* Connect_email.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Connect_email.png; sourceTree = "<group>"; };
+		859DBC2017C6FABC004366B4 /* Connect_facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Connect_facebook.png; sourceTree = "<group>"; };
+		859DBC2117C6FABC004366B4 /* Connect_twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Connect_twitter.png; sourceTree = "<group>"; };
+		859DBC2217C6FABC004366B4 /* header_connect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = header_connect.png; sourceTree = "<group>"; };
+		859DBC2817CEC196004366B4 /* app_icon_57_57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_57_57.png; sourceTree = "<group>"; };
+		859DBC2A17CEC19B004366B4 /* app_icon_114_114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_114_114.png; sourceTree = "<group>"; };
+		859DBC2E17CEC3EE004366B4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		859DBC3017CEC3FA004366B4 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		859DBC3217CECD52004366B4 /* message_category_default_100_100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = message_category_default_100_100.png; path = ../../../Designs/mobile_ithrive/logo/message_category_default_100_100.png; sourceTree = "<group>"; };
+		859DBC3317CECD52004366B4 /* slide_default_260_250.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = slide_default_260_250.png; path = ../../../Designs/mobile_ithrive/logo/slide_default_260_250.png; sourceTree = "<group>"; };
 		85A8444316D000FC00F32754 /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
 		85A8444416D000FC00F32754 /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
 		85A8444716D035A600F32754 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -161,6 +190,10 @@
 		859896D716CF2A30005EA551 = {
 			isa = PBXGroup;
 			children = (
+				859DBC3017CEC3FA004366B4 /* Default@2x.png */,
+				859DBC2E17CEC3EE004366B4 /* Default.png */,
+				859DBC2A17CEC19B004366B4 /* app_icon_114_114.png */,
+				859DBC2817CEC196004366B4 /* app_icon_57_57.png */,
 				85E870AE170D032F00DC5B38 /* Default-568h@2x.png */,
 				85A8444716D035A600F32754 /* libsqlite3.dylib */,
 				859896EC16CF2A30005EA551 /* iosMobile */,
@@ -196,6 +229,7 @@
 		859896EC16CF2A30005EA551 /* iosMobile */ = {
 			isa = PBXGroup;
 			children = (
+				859DBC1917C6F671004366B4 /* extentions */,
 				859C350F16F4DE4900DDC72C /* JSONKit.m */,
 				859C350D16F4DE4100DDC72C /* JSONKit.h */,
 				8540368016EADD810044213D /* MessageViewController.h */,
@@ -235,6 +269,11 @@
 		859896ED16CF2A30005EA551 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				859DBC3217CECD52004366B4 /* message_category_default_100_100.png */,
+				859DBC3317CECD52004366B4 /* slide_default_260_250.png */,
+				859DBC0E17C6EB43004366B4 /* tab_connect */,
+				859DBC0A17C6E6D1004366B4 /* 194-note-2.png */,
+				859DBC0B17C6E6D1004366B4 /* 194-note-2@2x.png */,
 				85922CC6171B7C320091FEB2 /* 30-circle-play-blue.png */,
 				85922CC7171B7C320091FEB2 /* 29-circle-pause-blue.png */,
 				85922CB8171B6C500091FEB2 /* 287-at.png */,
@@ -272,6 +311,27 @@
 				8598971816CF2A31005EA551 /* iosMobileTests-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		859DBC0E17C6EB43004366B4 /* tab_connect */ = {
+			isa = PBXGroup;
+			children = (
+				859DBC1E17C6FABC004366B4 /* Connect_address.png */,
+				859DBC1F17C6FABC004366B4 /* Connect_email.png */,
+				859DBC2017C6FABC004366B4 /* Connect_facebook.png */,
+				859DBC2117C6FABC004366B4 /* Connect_twitter.png */,
+				859DBC2217C6FABC004366B4 /* header_connect.png */,
+			);
+			name = tab_connect;
+			sourceTree = "<group>";
+		};
+		859DBC1917C6F671004366B4 /* extentions */ = {
+			isa = PBXGroup;
+			children = (
+				859DBC1B17C6F701004366B4 /* MyUnderlinedLabel.h */,
+				859DBC1C17C6F701004366B4 /* MyUnderlinedLabel.m */,
+			);
+			name = extentions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -364,6 +424,19 @@
 				85922CBB171B6C500091FEB2 /* 287-at@2x.png in Resources */,
 				85922CC8171B7C320091FEB2 /* 30-circle-play-blue.png in Resources */,
 				85922CC9171B7C320091FEB2 /* 29-circle-pause-blue.png in Resources */,
+				859DBC0C17C6E6D1004366B4 /* 194-note-2.png in Resources */,
+				859DBC0D17C6E6D1004366B4 /* 194-note-2@2x.png in Resources */,
+				859DBC2317C6FABC004366B4 /* Connect_address.png in Resources */,
+				859DBC2417C6FABC004366B4 /* Connect_email.png in Resources */,
+				859DBC2517C6FABC004366B4 /* Connect_facebook.png in Resources */,
+				859DBC2617C6FABC004366B4 /* Connect_twitter.png in Resources */,
+				859DBC2717C6FABC004366B4 /* header_connect.png in Resources */,
+				859DBC2C17CEC23E004366B4 /* app_icon_57_57.png in Resources */,
+				859DBC2D17CEC243004366B4 /* app_icon_114_114.png in Resources */,
+				859DBC2F17CEC3EE004366B4 /* Default.png in Resources */,
+				859DBC3117CEC3FA004366B4 /* Default@2x.png in Resources */,
+				859DBC3417CECD52004366B4 /* message_category_default_100_100.png in Resources */,
+				859DBC3517CECD52004366B4 /* slide_default_260_250.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +485,7 @@
 				8540368316EADD820044213D /* MessageViewController.m in Sources */,
 				859C351016F4DE4900DDC72C /* JSONKit.m in Sources */,
 				85E7605A1714D6B700C9B7DE /* MapViewController.m in Sources */,
+				859DBC1D17C6F701004366B4 /* MyUnderlinedLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
