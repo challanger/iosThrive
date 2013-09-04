@@ -82,7 +82,7 @@
     {
         //audioPlaying = FALSE;
         [audioPlayer pause];
-        [playButton setImage:[UIImage imageNamed:@"30-circle-play-blue.png"] forState:UIControlStateNormal];
+        [playButton setImage:[UIImage imageNamed:@"message_tab_play.png"] forState:UIControlStateNormal];
     }
     else
     {
@@ -94,7 +94,7 @@
         [spinner startAnimating];
         
         [audioPlayer play];
-        [playButton setImage:[UIImage imageNamed:@"29-circle-pause-blue.png"] forState:UIControlStateNormal];
+        [playButton setImage:[UIImage imageNamed:@"message_tab_pause.png"] forState:UIControlStateNormal];
         //audioPlaying = TRUE;
     }
 }
@@ -182,20 +182,20 @@
     {
         self.navigationItem.title=[mItem get_name];
         [mTitle setText:[mItem get_name]];
-        mTitle.font = [UIFont fontWithName:@"Arial" size:20];
-        mTitle.textColor = [UIColor whiteColor];
+        //mTitle.font = [UIFont fontWithName:@"Arial" size:20];
+        //mTitle.textColor = [UIColor whiteColor];
         
         [self loadAudio: [mItem get_file]];
         
         if([mCategory load_item_db:[mItem get_category]])
         {
             [mCategoryTitle setText:[mCategory get_name]];
-            mCategoryTitle.font = [UIFont fontWithName:@"Arial" size:17];
-            mCategoryTitle.textColor = [UIColor whiteColor];
+            //mCategoryTitle.font = [UIFont fontWithName:@"Arial" size:17];
+            //mCategoryTitle.textColor = [UIColor whiteColor];
             
             [mCategoryAuthor setText:[mCategory get_author]];
-            mCategoryAuthor.font = [UIFont fontWithName:@"Arial" size:12];
-            mCategoryAuthor.textColor = [UIColor whiteColor];
+            //mCategoryAuthor.font = [UIFont fontWithName:@"Arial" size:12];
+            //mCategoryAuthor.textColor = [UIColor whiteColor];
             
             if([mCategory is_image_loaded])
             {

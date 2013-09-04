@@ -88,6 +88,17 @@
     
     int x=10;
     
+    //Add the header
+    UIImageView *imgView = [[[UIImageView alloc] initWithFrame:CGRectMake(0,x,320,56)] autorelease];
+    //now that we have the image from the web send it to be displayed
+    //NSString * filePath = [NSString stringWithFormat:@"%@/%@", documentsDirectory,[mCategory get_image]];
+    UIImage *img = [UIImage imageNamed:@"header_media.png"];
+    [imgView setImage:img];
+    [img release];
+    [self.scrollView addSubview:imgView];
+    
+    x=x+56+3;
+    
     //loop through all the categories
     MessageCategory *mCategory;
     for(mCategory in categories)
@@ -95,8 +106,15 @@
         //NSLog(@"Category Name %@ webID %i",[mCategory get_name],[mCategory get_web_id]);
         NSMutableArray *category_items=[MessageItem load_current_files_db:[mCategory get_web_id]];
         
-        //add the image
-        UIImageView *imgView = [[[UIImageView alloc] initWithFrame:CGRectMake(10,x,120,120)] autorelease];
+        //add the drop shadow
+        UIImageView *imgView_drop_shadow = [[[UIImageView alloc] initWithFrame:CGRectMake(10,x,109,110)] autorelease];
+        UIImage *img_drop_shadow = [UIImage imageNamed:@"media_tab_drop_shadow.png"];
+        [imgView_drop_shadow setImage:img_drop_shadow];
+        [img_drop_shadow release];
+        [self.scrollView addSubview:imgView_drop_shadow];
+        
+        //add the image 
+        UIImageView *imgView = [[[UIImageView alloc] initWithFrame:CGRectMake(12,x,101,102)] autorelease];
         //now that we have the image from the web send it to be displayed 
         NSString * filePath = [NSString stringWithFormat:@"%@/%@", documentsDirectory,[mCategory get_image]];
         UIImage *img = [[UIImage alloc] initWithContentsOfFile:filePath];
@@ -105,17 +123,17 @@
         [self.scrollView addSubview:imgView];
         
         //Add the title
-        UILabel *cat_name = [[[UILabel alloc] initWithFrame:CGRectMake(140,x,170,40)] autorelease];
+        UILabel *cat_name = [[[UILabel alloc] initWithFrame:CGRectMake(122,x,170,25)] autorelease];
         [cat_name setText: [mCategory get_name]];
         cat_name.backgroundColor = [UIColor clearColor];
-        cat_name.font = [UIFont fontWithName:@"Arial" size:27];
-        cat_name.textColor = [UIColor whiteColor];
+        cat_name.font = [UIFont fontWithName:@"ArialRoundedMTBold" size:25];
+        cat_name.textColor = [UIColor colorWithRed:41.0f/255.0f green:40.0f/255.0f blue:40.0f/255.0f alpha:1.0f];
         [self.scrollView addSubview:cat_name];
         
-        UILabel *cat_author = [[[UILabel alloc] initWithFrame:CGRectMake(140,x+33,170,20)] autorelease];
+        UILabel *cat_author = [[[UILabel alloc] initWithFrame:CGRectMake(124,x+33,170,11)] autorelease];
         [cat_author setText: [mCategory get_author]];
-        cat_author.font = [UIFont fontWithName:@"Arial" size:12];
-        cat_author.textColor = [UIColor whiteColor];
+        cat_author.font = [UIFont fontWithName:@"ArialRoundedMTBold" size:11];
+        cat_author.textColor = [UIColor colorWithRed:41.0f/255.0f green:40.0f/255.0f blue:40.0f/255.0f alpha:1.0f];
         cat_author.backgroundColor = [UIColor clearColor];
         [self.scrollView addSubview:cat_author];
         
@@ -125,8 +143,9 @@
         //NSLog(@"number of items %i",[category_items count]);
         MessageItem *mItem;
         
-        UIColor *grey_color = [UIColor grayColor];
-        UIColor *black_color = [UIColor blackColor];
+        UIColor *ligth_green_color = [UIColor colorWithRed:100.0f/255.0f green:208.0f/255.0f blue:159.0f/255.0f alpha:1.0f];
+        UIColor *dark_green_color = [UIColor colorWithRed:3.0f/255.0f green:104.0f/255.0f blue:58.0f/255.0f alpha:1.0f];
+        UIColor *font_light_color = [UIColor colorWithRed:252.0f/255.0f green:255.0f/255.0f blue:253.0f/255.0f alpha:1.0f];
         
         int item_count=0;
         for(mItem in category_items)
@@ -134,38 +153,50 @@
             //NSLog(@"Message name %@",[mItem get_name]);
             
             UIButton *message_name = [UIButton buttonWithType:UIButtonTypeCustom];
-            message_name.frame = CGRectMake(15,x,295,30);
+            message_name.frame = CGRectMake(10,x,300,30);
             [message_name.titleLabel setTextAlignment:UITextAlignmentLeft];
             message_name.contentHorizontalAlignment =UIControlContentHorizontalAlignmentLeft;
             message_name.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
             [message_name setTitle:[mItem get_name] forState:UIControlStateNormal];
             if((item_count%2)==0)
-                message_name.backgroundColor = black_color;
+                message_name.backgroundColor = dark_green_color;
             else 
-                message_name.backgroundColor = grey_color;
-            [message_name.titleLabel setFont:[UIFont fontWithName:@"Arial" size:16]];
-            [message_name.titleLabel setTextColor:[UIColor whiteColor]];
+                message_name.backgroundColor = ligth_green_color;
+            [message_name.titleLabel setFont:[UIFont fontWithName:@"ArialRoundedMTBold" size:18]];
+            [message_name.titleLabel setTextColor:font_light_color];
             
             [message_name setTag: [mItem get_web_id]];
             [message_name addTarget:self action:@selector(loadMessage:) forControlEvents:(UIControlEvents)UIControlEventTouchUpInside];
             
             [self.scrollView addSubview:message_name];
             
+            UIButton *message_go_button = [UIButton buttonWithType:UIButtonTypeCustom];
+            message_go_button.frame = CGRectMake(280,x+2,25,26);
+            [message_go_button setImage:[UIImage imageNamed:@"media_tab_go_button.png"] forState:UIControlStateNormal];
+            //message_go_button.contentHorizontalAlignment =UIControlContentHorizontalAlignmentRight;
+            [message_go_button addTarget:self action:@selector(loadMessage:) forControlEvents:(UIControlEvents)UIControlEventTouchUpInside];
+            [self.scrollView addSubview:message_go_button];
+            
             x=x+30;
+            
             UIButton *message_date = [UIButton buttonWithType:UIButtonTypeCustom];
-            message_date.frame = CGRectMake(15,x,295,10);
+            message_date.frame = CGRectMake(220,x-14,60,10);
             [message_date setTitle: [mItem get_formated_date] forState:UIControlStateNormal];
             if((item_count%2)==0)
-                message_date.backgroundColor = black_color;
+                message_date.backgroundColor = dark_green_color;
             else 
-                message_date.backgroundColor = grey_color;
-            [message_date.titleLabel setFont:[UIFont fontWithName:@"Arial" size:10]];
-            [message_date.titleLabel setTextColor:[UIColor whiteColor]];
+                message_date.backgroundColor = ligth_green_color;
+            [message_date.titleLabel setFont:[UIFont fontWithName:@"ArialRoundedMTBold" size:11]];
+            [message_date.titleLabel setTextColor:font_light_color];
             message_date.contentHorizontalAlignment =UIControlContentHorizontalAlignmentRight;
             [message_date addTarget:self action:@selector(loadMessage:) forControlEvents:(UIControlEvents)UIControlEventTouchUpInside];
             [self.scrollView addSubview:message_date];
             
-            x=x+10;
+            
+            
+            
+            
+            //x=x+10;
             item_count++;
             
         }
