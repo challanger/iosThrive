@@ -380,7 +380,7 @@
     }
     else 
     {
-        [imageArray addObject:[UIImage imageNamed:@"message_category_default_100_100"]];
+        [imageArray addObject:[UIImage imageNamed:@"slide_default_260_250.png"]];
     }
     //[news_items relase];
     

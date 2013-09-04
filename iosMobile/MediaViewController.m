@@ -153,7 +153,7 @@
             //NSLog(@"Message name %@",[mItem get_name]);
             
             UIButton *message_name = [UIButton buttonWithType:UIButtonTypeCustom];
-            message_name.frame = CGRectMake(10,x,300,30);
+            message_name.frame = CGRectMake(10,x,300,45);
             [message_name.titleLabel setTextAlignment:UITextAlignmentLeft];
             message_name.contentHorizontalAlignment =UIControlContentHorizontalAlignmentLeft;
             message_name.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
@@ -162,7 +162,7 @@
                 message_name.backgroundColor = dark_green_color;
             else 
                 message_name.backgroundColor = ligth_green_color;
-            [message_name.titleLabel setFont:[UIFont fontWithName:@"ArialRoundedMTBold" size:18]];
+            [message_name.titleLabel setFont:[UIFont fontWithName:@"ArialRoundedMTBold" size:20]];
             [message_name.titleLabel setTextColor:font_light_color];
             
             [message_name setTag: [mItem get_web_id]];
@@ -171,13 +171,13 @@
             [self.scrollView addSubview:message_name];
             
             UIButton *message_go_button = [UIButton buttonWithType:UIButtonTypeCustom];
-            message_go_button.frame = CGRectMake(280,x+2,25,26);
+            message_go_button.frame = CGRectMake(280,x+10,25,26);
             [message_go_button setImage:[UIImage imageNamed:@"media_tab_go_button.png"] forState:UIControlStateNormal];
             //message_go_button.contentHorizontalAlignment =UIControlContentHorizontalAlignmentRight;
             [message_go_button addTarget:self action:@selector(loadMessage:) forControlEvents:(UIControlEvents)UIControlEventTouchUpInside];
             [self.scrollView addSubview:message_go_button];
             
-            x=x+30;
+            x=x+45;
             
             UIButton *message_date = [UIButton buttonWithType:UIButtonTypeCustom];
             message_date.frame = CGRectMake(220,x-14,60,10);
