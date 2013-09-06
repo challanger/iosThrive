@@ -369,7 +369,7 @@
             {
                 //since we all ready have the image send it to be displayed 
                 NSString * filePath = [NSString stringWithFormat:@"%@/%@", documentsDirectory,[news_item get_image]];
-                [imageArray addObject:[UIImage imageWithContentsOfFile:filePath]];
+                [imageArray addObject:filePath]; //[UIImage imageWithContentsOfFile:filePath]];
                 
                 //NSLog(@"%@",filePath);
                 
@@ -380,7 +380,7 @@
     }
     else 
     {
-        [imageArray addObject:[UIImage imageNamed:@"slide_default_260_250.png"]];
+        [imageArray addObject:@"slide_default_260_250.png"];//[UIImage imageNamed:@"slide_default_260_250.png"]];
     }
     //[news_items relase];
     
