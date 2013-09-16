@@ -136,13 +136,14 @@
 -(void)viewWillAppear:(BOOL)animated {
     [self loadData];
     //NSLog(@"Current Dirrection2 %i",newsAnimationDirection);
-    //reload the image view every 5 min
+    //reload the image view every 5 min (300.0)
     loadNewsTimer = [NSTimer scheduledTimerWithTimeInterval:300.0 target:self selector:@selector(loadData) userInfo:nil repeats:YES];
     [self startNewsTimer];
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
     [loadNewsTimer invalidate];
+    [self killNewsTimer];
 }
 
 
@@ -166,6 +167,11 @@
 {
     self.imageView = nil;
     [super viewDidUnload];
+    
+    [imageViews release];
+    imageViews=nil;
+    [imageShadowViews release];
+    imageShadowViews=nil;
 
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -185,13 +191,32 @@
     self.imageView.alpha=0;
     self.imageDropShadowView.alpha=0;
     
+    //clear out the previous images
+    if(imageViews.count>0)
+    {
+        for (UIImageView *v in imageViews) {
+            if([v isKindOfClass:[UIImageView class]])
+                [v removeFromSuperview];
+        }
+        imageViews = [[NSMutableArray alloc] init];
+    }
+    if(imageShadowViews.count>0)
+    {
+        for (UIImageView *v in imageShadowViews) {
+            if([v isKindOfClass:[UIImageView class]])
+                [v removeFromSuperview];
+        }
+        imageShadowViews = [[NSMutableArray alloc] init];
+    }
+    
+    
     float x_axis=27;
     newsImageIndex=0;
     
     for(int i=0; i<news_images.count; i++)
     {
         //create the drop shadow image
-        UIImageView *dropImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(x_axis,95,267,259)] autorelease];
+        UIImageView *dropImageView = [[UIImageView alloc] initWithFrame:CGRectMake(x_axis,95,267,259)];
         UIImage *imgDrop = [UIImage imageNamed:@"home_tab_drop_shadow.png"];
         //dropImageView.backgroundColor=[UIColor greenColor];
         [dropImageView setImage:imgDrop];
@@ -200,10 +225,12 @@
         [imageShadowViews addObject: dropImageView];
         
         [imgDrop release];
+        imgDrop=nil;
         [dropImageView release];
+        dropImageView=nil;
         
         //now that we have the image from the web send it to be displayed
-        UIImageView *newsImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(x_axis,97,262,248)] autorelease];
+        UIImageView *newsImageView = [[UIImageView alloc] initWithFrame:CGRectMake(x_axis,97,262,248)] ;
         UIImage *img = [[UIImage alloc] initWithContentsOfFile:[news_images objectAtIndex:i]];
         [newsImageView setImage:img];
         [self.mainView addSubview:newsImageView];
@@ -211,7 +238,9 @@
         [imageViews addObject: newsImageView];
         
         [img release];
+        img=nil;
         [newsImageView release];
+        newsImageView=nil;
         
         
         
@@ -219,7 +248,7 @@
     }
 
     
-    //[news_images release];
+    [news_images release];
     return false;
 }
 
@@ -227,6 +256,11 @@
 - (void)dealloc
 {
     //[mImageView release];
+    [imageViews release];
+    imageViews=nil;
+    [imageShadowViews release];
+    imageShadowViews=nil;
+    
     [super dealloc];
 }
 

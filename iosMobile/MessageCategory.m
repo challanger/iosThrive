@@ -295,6 +295,9 @@
 
                 [categories addObject:mCategory];
                 
+                [mCategory release];
+                mCategory = nil;
+                
                 count++;
             }
             
@@ -327,5 +330,19 @@
     }
     
     return categories;
+}
+
+-(void)dealloc
+{
+    [name release];
+    name = nil;
+    [web_image release];
+    web_image = nil;
+    [mobile_image release];
+    mobile_image = nil;
+    [author release];
+    author = nil;
+    
+    [super dealloc];
 }
 @end

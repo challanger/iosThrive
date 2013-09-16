@@ -52,12 +52,16 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [self loadData];
+    NSLog(@"after load media");
     //reload the media view every 5 min
     loadMediaTimmer = [NSTimer scheduledTimerWithTimeInterval:300.0 target:self selector:@selector(loadData) userInfo:nil repeats:YES];
+    [super viewWillAppear:animated];
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
     [loadMediaTimmer invalidate];
+    //[self.scrollView removeFromSuperview];
+    [super viewWillDisappear:animated];
 }
 
 - (void)viewDidUnload
@@ -89,15 +93,22 @@
     int x=10;
     
     //Add the header
-    UIImageView *imgView = [[[UIImageView alloc] initWithFrame:CGRectMake(0,x,320,56)] autorelease];
+    UIImageView *imgView_header = [[UIImageView alloc] initWithFrame:CGRectMake(0,x,320,56)];
     //now that we have the image from the web send it to be displayed
     //NSString * filePath = [NSString stringWithFormat:@"%@/%@", documentsDirectory,[mCategory get_image]];
-    UIImage *img = [UIImage imageNamed:@"header_media.png"];
-    [imgView setImage:img];
-    [img release];
-    [self.scrollView addSubview:imgView];
+    UIImage *img_header = [UIImage imageNamed:@"header_media.png"];
+    [imgView_header setImage:img_header];
+    //[img_header release];
+    //img_header = nil;
+    [self.scrollView addSubview:imgView_header];
+    [imgView_header release];
+    imgView_header = nil;
     
     x=x+56+3;
+    
+    UIColor *ligth_green_color = [UIColor colorWithRed:100.0f/255.0f green:208.0f/255.0f blue:159.0f/255.0f alpha:1.0f];
+    UIColor *dark_green_color = [UIColor colorWithRed:3.0f/255.0f green:104.0f/255.0f blue:58.0f/255.0f alpha:1.0f];
+    UIColor *font_light_color = [UIColor colorWithRed:252.0f/255.0f green:255.0f/255.0f blue:253.0f/255.0f alpha:1.0f];
     
     //loop through all the categories
     MessageCategory *mCategory;
@@ -107,46 +118,53 @@
         NSMutableArray *category_items=[MessageItem load_current_files_db:[mCategory get_web_id]];
         
         //add the drop shadow
-        UIImageView *imgView_drop_shadow = [[[UIImageView alloc] initWithFrame:CGRectMake(10,x,109,110)] autorelease];
+        UIImageView *imgView_drop_shadow = [[UIImageView alloc] initWithFrame:CGRectMake(10,x,109,110)];
         UIImage *img_drop_shadow = [UIImage imageNamed:@"media_tab_drop_shadow.png"];
         [imgView_drop_shadow setImage:img_drop_shadow];
-        [img_drop_shadow release];
+        //[img_drop_shadow release];
         [self.scrollView addSubview:imgView_drop_shadow];
         
+        [imgView_drop_shadow release];
+        imgView_drop_shadow = nil;
+        
         //add the image 
-        UIImageView *imgView = [[[UIImageView alloc] initWithFrame:CGRectMake(12,x,101,102)] autorelease];
+        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(12,x,101,102)];
         //now that we have the image from the web send it to be displayed 
         NSString * filePath = [NSString stringWithFormat:@"%@/%@", documentsDirectory,[mCategory get_image]];
         UIImage *img = [[UIImage alloc] initWithContentsOfFile:filePath];
         [imgView setImage:img];
         [img release];
+        img = nil;
         [self.scrollView addSubview:imgView];
+        [imgView release];
+        imgView = nil;
         
         //Add the title
-        UILabel *cat_name = [[[UILabel alloc] initWithFrame:CGRectMake(122,x,170,25)] autorelease];
+        UILabel *cat_name = [[UILabel alloc] initWithFrame:CGRectMake(122,x,170,25)];
         [cat_name setText: [mCategory get_name]];
         cat_name.backgroundColor = [UIColor clearColor];
         cat_name.font = [UIFont fontWithName:@"ArialRoundedMTBold" size:25];
         cat_name.textColor = [UIColor colorWithRed:41.0f/255.0f green:40.0f/255.0f blue:40.0f/255.0f alpha:1.0f];
         [self.scrollView addSubview:cat_name];
         
-        UILabel *cat_author = [[[UILabel alloc] initWithFrame:CGRectMake(124,x+33,170,11)] autorelease];
+        [cat_name release];
+        cat_name = nil;
+        
+        UILabel *cat_author = [[UILabel alloc] initWithFrame:CGRectMake(124,x+33,170,11)];
         [cat_author setText: [mCategory get_author]];
         cat_author.font = [UIFont fontWithName:@"ArialRoundedMTBold" size:11];
         cat_author.textColor = [UIColor colorWithRed:41.0f/255.0f green:40.0f/255.0f blue:40.0f/255.0f alpha:1.0f];
         cat_author.backgroundColor = [UIColor clearColor];
         [self.scrollView addSubview:cat_author];
         
+        [cat_author release];
+        cat_author = nil;
+        
         
         x=x+140;
         
         //NSLog(@"number of items %i",[category_items count]);
         MessageItem *mItem;
-        
-        UIColor *ligth_green_color = [UIColor colorWithRed:100.0f/255.0f green:208.0f/255.0f blue:159.0f/255.0f alpha:1.0f];
-        UIColor *dark_green_color = [UIColor colorWithRed:3.0f/255.0f green:104.0f/255.0f blue:58.0f/255.0f alpha:1.0f];
-        UIColor *font_light_color = [UIColor colorWithRed:252.0f/255.0f green:255.0f/255.0f blue:253.0f/255.0f alpha:1.0f];
-        
         int item_count=0;
         for(mItem in category_items)
         {
@@ -170,12 +188,18 @@
             
             [self.scrollView addSubview:message_name];
             
+            //[message_name release];
+            //message_name=nil;
+            
             UIButton *message_go_button = [UIButton buttonWithType:UIButtonTypeCustom];
             message_go_button.frame = CGRectMake(280,x+10,25,26);
             [message_go_button setImage:[UIImage imageNamed:@"media_tab_go_button.png"] forState:UIControlStateNormal];
             //message_go_button.contentHorizontalAlignment =UIControlContentHorizontalAlignmentRight;
             [message_go_button addTarget:self action:@selector(loadMessage:) forControlEvents:(UIControlEvents)UIControlEventTouchUpInside];
             [self.scrollView addSubview:message_go_button];
+            
+            //[message_go_button release];
+            //message_go_button=nil;
             
             x=x+45;
             
@@ -192,7 +216,8 @@
             [message_date addTarget:self action:@selector(loadMessage:) forControlEvents:(UIControlEvents)UIControlEventTouchUpInside];
             [self.scrollView addSubview:message_date];
             
-            
+            //[message_date release];
+            //message_date=nil;
             
             
             
@@ -200,17 +225,24 @@
             item_count++;
             
         }
+        
+        [category_items release];
+        category_items = nil;
+        
         x=x+20;
         
         
     }
+    
+    [categories release];
+    categories = nil;
 
     self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, x);
     //self.scrollView.contentSize = CGSizeMake(2000, 2000);
     //[self.scrollView.contentInset.bottom = 50];
     
     
-    //[news_images release];
+    //[news_images release];*/
     return false;
 }
 

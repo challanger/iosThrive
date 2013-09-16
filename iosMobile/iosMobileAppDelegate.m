@@ -242,6 +242,8 @@
         NSLog(@"News slide url %@", [[news_posts objectAtIndex:i] objectForKey:@"imageurl"]);
         News *server_news=[[News alloc] init];
         [server_news load_items_from_server:[news_posts objectAtIndex:i]];
+        [server_news release];
+        //server_news = nil;
         
     }
     
@@ -264,9 +266,12 @@
             int cat_web_id=[[[category_items objectAtIndex:i] objectForKey:@"id"] intValue];
             MessageItem *server_message=[[MessageItem alloc] init];
             [server_message load_items_from_server:[message_items objectAtIndex:j] data: cat_web_id];
+            [server_message release];
             
             
         }
+        
+        [server_cateogry release];
     }
     
     return send;

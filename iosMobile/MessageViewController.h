@@ -23,6 +23,7 @@
     UIProgressView *progressView;
     MPMoviePlayerController *audioPlayer;
     bool audioPlaying;
+    bool valid_audio_player;
     
     UIActivityIndicatorView *spinner;
 }

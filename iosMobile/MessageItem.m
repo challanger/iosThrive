@@ -54,7 +54,9 @@
     NSDateFormatter *_formatter=[[NSDateFormatter alloc]init];
     [_formatter setLocale:[NSLocale currentLocale]];
     [_formatter setDateFormat:@"dd/MM/yy"];
-    NSMutableString *temp = [NSMutableString stringWithFormat:@"%@ ",[_formatter stringFromDate:date_temp]];
+    NSString *temp = [NSString stringWithFormat:@"%@ ",[_formatter stringFromDate:date_temp]];
+    [_formatter release];
+    _formatter = nil;
     return temp;
     //return [_formatter stringFromDate:date_temp];
     //return @"01/06/2013";
@@ -228,6 +230,9 @@
                 
                 [message_items addObject:mItem];
                 
+                [mItem release];
+                mItem = nil;
+                
                 count++;
             }
             
@@ -246,6 +251,16 @@
     }
     
     return message_items;
+}
+
+-(void)dealloc
+{
+    [file release];
+    file = nil;
+    [name release];
+    name=nil;
+    
+    [super dealloc];
 }
 
 @end

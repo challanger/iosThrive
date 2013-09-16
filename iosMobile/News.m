@@ -132,10 +132,14 @@
             {
                 local_id = sqlite3_column_int(statement, 0);
                 n_id = sqlite3_column_int(statement, 1);
-                image_web = [[NSMutableString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 2)];
-                image_mobile = [[NSMutableString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 3)];
-                link = [[NSMutableString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 4)];
-                caption = [[NSMutableString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 5)];
+                image_web = [[NSMutableString alloc] initWithString:[NSString stringWithFormat:@"%s",(char *) sqlite3_column_text(statement, 2)]];
+                image_mobile = [[NSMutableString alloc] initWithString:[NSString stringWithFormat:@"%s",(char *) sqlite3_column_text(statement, 3)]];
+                link = [[NSMutableString alloc] initWithString:[NSString stringWithFormat:@"%s",(char *) sqlite3_column_text(statement, 4)]];    
+                NSString *temp_caption=[[NSString alloc] initWithFormat:@"%@",@"test"];//sqlite3_column_text(statement, 5)];
+                caption = [[NSMutableString alloc] initWithString: temp_caption];
+                
+                [temp_caption release];
+                temp_caption = nil;
                 active = sqlite3_column_int(statement, 6);
                 start_date = sqlite3_column_int(statement, 7);
                 end_date = sqlite3_column_int(statement, 8);
@@ -211,10 +215,10 @@
 {
     local_id = sqlite3_column_int(statement, 0);
     n_id = sqlite3_column_int(statement, 1);
-    image_web = [[NSMutableString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 2)];
-    image_mobile = [[NSMutableString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 3)];
-    link = [[NSMutableString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 4)];
-    caption = [[NSMutableString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 5)];
+    image_web = [[NSMutableString alloc] initWithString:[NSString stringWithFormat:@"%s",(char *) sqlite3_column_text(statement, 2)]];//[[NSMutableString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 2)];
+    image_mobile = [[NSMutableString alloc] initWithString:[NSString stringWithFormat:@"%s",(char *) sqlite3_column_text(statement, 3)]];//[[NSMutableString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 3)];
+    link = [[NSMutableString alloc] initWithString:[NSString stringWithFormat:@"%s",(char *) sqlite3_column_text(statement, 4)]];//[[NSMutableString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 4)];
+    caption = [[NSMutableString alloc] initWithString:[NSString stringWithFormat:@"%s",(char *) sqlite3_column_text(statement, 5)]];//[[NSMutableString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 5)];
     active = sqlite3_column_int(statement, 6);
     start_date = sqlite3_column_int64(statement, 7);
     end_date = sqlite3_column_int64(statement, 8);
@@ -238,6 +242,7 @@
     {
         //New record create it
         n_id= [[JSONData objectForKey:@"id"] intValue];
+        [image_web release];
         image_web = [JSONData objectForKey:@"imageurl"];
         image_mobile = [NSMutableString stringWithString:@""];
         link = [JSONData objectForKey:@"link"];
@@ -269,6 +274,7 @@
             }
             
             n_id= [[JSONData objectForKey:@"id"] intValue];
+            [image_web release];
             image_web = [JSONData objectForKey:@"imageurl"];
             image_mobile = [NSMutableString stringWithString:@""];
             link = [JSONData objectForKey:@"link"];
@@ -328,6 +334,9 @@
                 
                 [news_items addObject:news_item];
                 
+                [news_item release];
+                news_item = nil;
+                
                 count++;
             }
             
@@ -382,12 +391,26 @@
     {
         [imageArray addObject:@"slide_default_260_250.png"];//[UIImage imageNamed:@"slide_default_260_250.png"]];
     }
-    //[news_items relase];
+    [news_items release];
     
     //[documentsDirectory release];
     //[paths release];
     
     return imageArray;
+}
+
+-(void)dealloc
+{
+    [image_web release];
+    image_web =nil;
+    [image_mobile release];
+    image_mobile = nil;
+    [link release];
+    link = nil;
+    [caption release];
+    caption = nil;
+    
+    [super dealloc];
 }
 
 @end

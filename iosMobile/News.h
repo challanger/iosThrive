@@ -52,4 +52,6 @@
 //load item from source 
 -(void) load_items_from_server: (NSDictionary *) JSONData;
 +(NSMutableArray *) load_current_items_db;
+
+-(void)dealloc;
 @end

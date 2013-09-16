@@ -43,6 +43,7 @@
     // Do any additional setup after loading the view from its nib.
     //[mCategoryTitle setText:@"test"];
     //NSLog(@"webID %@",webID);
+    valid_audio_player=false;
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -53,12 +54,17 @@
 -(void)viewWillDisappear:(BOOL)animated {
     self.navigationController.navigationBar.hidden = YES;
     
-    //stop the audio play back
-    if(audioPlayer.playbackState == MPMoviePlaybackStatePlaying)
+    if((valid_audio_player)&&([audioPlayer respondsToSelector:@selector(playbackState)]))
     {
-        [playbackTimer invalidate];
-        [audioPlayer stop];
+        //stop the audio play back
+        if(audioPlayer.playbackState == MPMoviePlaybackStatePlaying)
+        {
+            [playbackTimer invalidate];
+            [audioPlayer stop];
+        }
     }
+    else
+        NSLog(@"Player state not found, did nothing");
 }
 
 - (void)viewDidUnload
@@ -78,31 +84,38 @@
 
 -(IBAction) playAudio
 {
-    if(audioPlayer.playbackState == MPMoviePlaybackStatePlaying)
+    if(valid_audio_player)
     {
-        //audioPlaying = FALSE;
-        [audioPlayer pause];
-        [playButton setImage:[UIImage imageNamed:@"message_tab_play.png"] forState:UIControlStateNormal];
+        if(audioPlayer.playbackState == MPMoviePlaybackStatePlaying)
+        {
+            //audioPlaying = FALSE;
+            [audioPlayer pause];
+            [playButton setImage:[UIImage imageNamed:@"message_tab_play.png"] forState:UIControlStateNormal];
+        }
+        else
+        {
+            spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            spinner.center = CGPointMake(100, 100);
+            spinner.transform = CGAffineTransformMakeScale(2, 2);
+            spinner.hidesWhenStopped = YES;
+            [self.view addSubview:spinner];
+            [spinner startAnimating];
+        
+            [audioPlayer play];
+            [playButton setImage:[UIImage imageNamed:@"message_tab_pause.png"] forState:UIControlStateNormal];
+            //audioPlaying = TRUE;
+        }
     }
     else
     {
-        spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-        spinner.center = CGPointMake(100, 100);
-        spinner.transform = CGAffineTransformMakeScale(2, 2);
-        spinner.hidesWhenStopped = YES;
-        [self.view addSubview:spinner];
-        [spinner startAnimating];
-        
-        [audioPlayer play];
-        [playButton setImage:[UIImage imageNamed:@"message_tab_pause.png"] forState:UIControlStateNormal];
-        //audioPlaying = TRUE;
+        NSLog(@"The audio file is not ready or does not exist");
     }
 }
 
 -(void)updateTime
 {
     //NSArray *audioMetadata = [audioPlayer timedMetadata];
-    //audioMetadata indexOfObject:<#(id)#>
+
     int minutes = (int)roundf(floor(audioPlayer.currentPlaybackTime/60));
     int seconds = (int)floorf(audioPlayer.currentPlaybackTime - (minutes * 60));
     
@@ -127,12 +140,15 @@
 {
     //NSLog(@"audo file location %@",audio_file);
     NSURL *url =[[NSURL alloc] initWithString:audio_file ];
-    audioPlayer = [[MPMoviePlayerController alloc] initWithContentURL:url];
+    audioPlayer = [[[MPMoviePlayerController alloc] initWithContentURL:url] autorelease];
     audioPlayer.movieSourceType = MPMovieSourceTypeStreaming;
     audioPlayer.view.hidden = YES;
     [self.view addSubview:audioPlayer.view];
     //[audioPlayer play];
     audioPlaying=false;
+    
+    [url release];
+    url=nil;
     
         
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(MPMoviePlayerLoadStateDidChange:) name:MPMoviePlayerLoadStateDidChangeNotification object:nil];
@@ -149,6 +165,7 @@
         //NSLog(@"current time in %g seconds",audioPlayer.currentPlaybackTime);
         
         playbackTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTime) userInfo:nil repeats:YES];
+        valid_audio_player=true;
     }
 }
 
@@ -220,6 +237,11 @@
         //TODO do something since we failed to load the message 
         NSLog(@"Failed to load the message");
     }
+    
+    [mCategory release];
+    mCategory = nil;
+    [mItem release];
+    mItem = nil;
 }
 
 @end
