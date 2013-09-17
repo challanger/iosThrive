@@ -56,9 +56,9 @@
             
             //Store the file
             [urlData writeToFile:filePath atomically:YES];
-            
+            //NSLog(@" new file name %@",file_name);
             //save the file name
-            image_mobile=[NSMutableString stringWithString: file_name];
+            image_mobile=[[NSMutableString alloc] initWithString: file_name];
             mobile_loaded=1;
             [self save_to_db];
             
@@ -232,9 +232,9 @@
     //pull the id for the news item from the json data
     NSString *json_id= [JSONData objectForKey:@"id"];
     int jID= [json_id intValue];
-    int last_synced_json = [[JSONData objectForKey:@"serial"] intValue];
+    int last_synced_json = [[JSONData objectForKey:@"last_modified"] intValue];
     
-    NSLog(@"Web ID %i",jID);
+    //NSLog(@"Web ID %i",jID);
     
     //try to load the data from the serve 
     [self load_item_db:jID];
@@ -243,10 +243,10 @@
         //New record create it
         n_id= [[JSONData objectForKey:@"id"] intValue];
         [image_web release];
-        image_web = [JSONData objectForKey:@"imageurl"];
-        image_mobile = [NSMutableString stringWithString:@""];
-        link = [JSONData objectForKey:@"link"];
-        caption = [JSONData objectForKey:@"caption"];
+        image_web = [[NSMutableString alloc] initWithString:[JSONData objectForKey:@"imageurl"]];
+        image_mobile = [[NSMutableString alloc] initWithString: @""];
+        link = [[NSMutableString alloc] initWithString:[JSONData objectForKey:@"link"]];
+        caption = [[NSMutableString alloc] initWithString:[JSONData objectForKey:@"caption"]];
         active = 1;
         
         start_date = [[JSONData objectForKey:@"start_date"] intValue];
@@ -275,10 +275,10 @@
             
             n_id= [[JSONData objectForKey:@"id"] intValue];
             [image_web release];
-            image_web = [JSONData objectForKey:@"imageurl"];
-            image_mobile = [NSMutableString stringWithString:@""];
-            link = [JSONData objectForKey:@"link"];
-            caption = [JSONData objectForKey:@"caption"];
+            image_web = [[NSMutableString alloc] initWithString:[JSONData objectForKey:@"imageurl"]];
+            image_mobile = [[NSMutableString alloc] initWithString:@""];
+            link = [[NSMutableString alloc] initWithString:[JSONData objectForKey:@"link"]];
+            caption = [[NSMutableString alloc] initWithString:[JSONData objectForKey:@"caption"]];
             active = 1;
             start_date = [[JSONData objectForKey:@"start_date"] intValue];
             end_date = [[JSONData objectForKey:@"expires"] intValue];
@@ -364,11 +364,13 @@
             //Check to see if we have the image otherwise try to load it
             if([news_item is_image_loaded]==false)
             {
+                //NSLog(@"image name before %@",[news_item get_image]);
                 if([news_item pull_image_from_web])
                 {
+                    //NSLog(@"image name after %@",[news_item get_image]);
                     //now that we have the image from the web send it to be displayed 
                     NSString * filePath = [NSString stringWithFormat:@"%@/%@", documentsDirectory,[news_item get_image]];
-                    [imageArray addObject:[UIImage imageWithContentsOfFile:filePath]];
+                    [imageArray addObject:filePath];
                     
                     //[filePath release];
                     

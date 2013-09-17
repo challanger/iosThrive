@@ -165,7 +165,7 @@
     //pull the id for the news item from the json data
     NSString *json_id= [serverData objectForKey:@"id"];
     int jID= [json_id intValue];
-    int last_synced_json = [[serverData objectForKey:@"serial"] intValue];
+    int last_synced_json = [[serverData objectForKey:@"last_modified"] intValue];
     
     //try to load the data from the serve 
     [self load_item_db:jID];
@@ -174,8 +174,8 @@
         //New record create it
         web_id= [[serverData objectForKey:@"id"] intValue];
         category_id = json_cat_id;
-        file = [serverData objectForKey:@"url"];
-        name = [serverData objectForKey:@"title"];
+        file = [[NSMutableString alloc] initWithString:[serverData objectForKey:@"url"]];
+        name = [[NSMutableString alloc] initWithString:[serverData objectForKey:@"title"]];
         active = 1;
         date = [[serverData objectForKey:@"date"] intValue];
         last_synced = [[serverData objectForKey:@"last_modified"] intValue];
@@ -189,8 +189,8 @@
         {
             web_id= [[serverData objectForKey:@"id"] intValue];
             category_id = json_cat_id;
-            file = [serverData objectForKey:@"url"];
-            name = [serverData objectForKey:@"title"];
+            file = [[NSMutableString alloc] initWithString:[serverData objectForKey:@"url"]];
+            name = [[NSMutableString alloc] initWithString:[serverData objectForKey:@"title"]];
             active = 1;
             date = [[serverData objectForKey:@"date"] intValue];
             last_synced = [[serverData objectForKey:@"last_modified"] intValue];

@@ -191,11 +191,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "iosMobile/iosMobileAppDelegate.m"
-         timestampString = "400878160.032401"
+         timestampString = "401068739.949157"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "270"
-         endingLineNumber = "270"
+         startingLineNumber = "272"
+         endingLineNumber = "272"
          landmarkName = "-pullServerRecords"
          landmarkType = "5">
       </FileBreakpoint>
@@ -440,11 +440,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iosMobile/News.m"
-         timestampString = "400878160.032401"
+         timestampString = "401072256.656417"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "412"
-         endingLineNumber = "412"
+         startingLineNumber = "414"
+         endingLineNumber = "414"
          landmarkName = "-dealloc"
          landmarkType = "5">
       </FileBreakpoint>
@@ -808,4 +808,13 @@
          symbolName = "malloc_error_break">
       </SymbolicBreakpoint>
    </SymbolicBreakpoints>
+   <ExceptionBreakpoints>
+      <ExceptionBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         scope = "0"
+         stopOnStyle = "0">
+      </ExceptionBreakpoint>
+   </ExceptionBreakpoints>
 </Bucket>

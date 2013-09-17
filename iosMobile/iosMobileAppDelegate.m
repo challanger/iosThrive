@@ -35,7 +35,7 @@
     [self.window makeKeyAndVisible];
     
     [self geServerRecords];
-    loadServerTimer = [NSTimer scheduledTimerWithTimeInterval:1200.0 target:self selector:@selector(geServerRecords) userInfo:nil repeats:YES];//every 20 min contact the server to pull any new records 
+    loadServerTimer = [NSTimer scheduledTimerWithTimeInterval:1200.0 target:self selector:@selector(geServerRecords) userInfo:nil repeats:YES];//every 20 min (1200.0) contact the server to pull any new records 
     //[self pullServerRecords];
     return YES;
 }
@@ -234,12 +234,12 @@
     
     //run through the news posts 
     NSArray *news_posts=[resultsDictionary objectForKey:@"slides"];
-    NSLog(@"Number of news entries %i",[news_posts count]);
+    //NSLog(@"Number of news entries %i",[news_posts count]);
     int i=0;
     for(i=0; i< [news_posts count]; i++)
     {
         
-        NSLog(@"News slide url %@", [[news_posts objectAtIndex:i] objectForKey:@"imageurl"]);
+        //NSLog(@"News slide url %@", [[news_posts objectAtIndex:i] objectForKey:@"imageurl"]);
         News *server_news=[[News alloc] init];
         [server_news load_items_from_server:[news_posts objectAtIndex:i]];
         [server_news release];
@@ -249,6 +249,7 @@
     
     //run through the news posts 
     NSArray *category_items=[resultsDictionary objectForKey:@"media"];
+    //NSLog(@"Number of category items %i",[category_items count]);
     for(i=0; i< [category_items count]; i++)
     {
         
@@ -258,6 +259,7 @@
         
         //Now save the messages for this category 
         NSArray *message_items=[[category_items objectAtIndex:i] objectForKey:@"items"];
+        //NSLog(@"Number of messages items %i",[message_items count]);
         int j=0;
         for(j=0; j< [message_items count]; j++)
         {

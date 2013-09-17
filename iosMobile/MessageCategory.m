@@ -213,7 +213,7 @@
     //pull the id for the news item from the json data
     NSString *json_id= [JSONData objectForKey:@"id"];
     int jID= [json_id intValue];
-    int last_synced_json = [[JSONData objectForKey:@"serial"] intValue];
+    int last_synced_json = [[JSONData objectForKey:@"last_modified"] intValue];
     
     //try to load the data from the serve 
     [self load_item_db:jID];
@@ -221,17 +221,17 @@
     {
         //New record create it
         web_id= [[JSONData objectForKey:@"id"] intValue];
-        web_image = [JSONData objectForKey:@"imageurl"];
-        mobile_image = [NSMutableString stringWithString:@""];
-        name = [JSONData objectForKey:@"title"];
-        author = [JSONData objectForKey:@"author"];
+        web_image = [[NSMutableString alloc] initWithString:[JSONData objectForKey:@"imageurl"]];
+        mobile_image = [[NSMutableString alloc] initWithString:@""]; //[NSMutableString stringWithString:@""];
+        name = [[NSMutableString alloc] initWithString:[JSONData objectForKey:@"title"]];
+        author = [[NSMutableString alloc] initWithString:[JSONData objectForKey:@"author"]];
         active = 1;
         date = [[JSONData objectForKey:@"date"] intValue];
         image_loaded = 0;
         last_synced = [[JSONData objectForKey:@"last_modified"] intValue];
         
         [self save_to_db]; 
-        NSLog(@"createing %i",[self get_web_id]);
+        //NSLog(@"createing %i",[self get_web_id]);
     }
     else 
     {
@@ -251,19 +251,19 @@
             
             //New record create it
             web_id= [[JSONData objectForKey:@"id"] intValue];
-            web_image = [JSONData objectForKey:@"imageurl"];
-            mobile_image = [NSMutableString stringWithString:@""];
-            name = [JSONData objectForKey:@"title"];
-            author = [JSONData objectForKey:@"author"];
+            web_image = [[NSMutableString alloc] initWithString:[JSONData objectForKey:@"imageurl"]];
+            mobile_image = [[NSMutableString alloc] initWithString:@""]; //[NSMutableString stringWithString:@""];
+            name = [[NSMutableString alloc] initWithString:[JSONData objectForKey:@"title"]];
+            author = [[NSMutableString alloc] initWithString:[JSONData objectForKey:@"author"]];
             active = 1;
             date = [[JSONData objectForKey:@"date"] intValue];
             image_loaded = 0;
             last_synced = [[JSONData objectForKey:@"last_modified"] intValue];
-            //NSLog(@"update %i",[self get_web_id]);
+            //NSLog(@"update category %i",[self get_web_id]);
             [self save_to_db]; 
         }
-        //else 
-            //NSLog(@"record uptodate %i",[self get_web_id]);
+        //else
+           // NSLog(@"record uptodate %i %i %i",[self get_web_id],last_synced,last_synced_json);
     }
 
 }
