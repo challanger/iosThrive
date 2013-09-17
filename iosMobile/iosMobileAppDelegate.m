@@ -212,14 +212,74 @@
     
 }
 
+-(int) pullLastSynced
+{
+    int lastSynced=0;
+    int temp=0;
+    
+    sqlite3_stmt *statement;
+    
+    sqlite3 *thriveDB=[[VariableStore sharedInstance] thriveDB];
+    
+    const char *dbpath = [[VariableStore databasePath] UTF8String];
+    
+    if(sqlite3_open(dbpath,&thriveDB)==SQLITE_OK)
+    {
+        NSString *newsSQL = [NSString stringWithFormat: @"SELECT max(last_synced) from NEWS"];
+        const char *query_news_stmt = [newsSQL UTF8String];
+        if(sqlite3_prepare_v2(thriveDB,query_news_stmt,-1,&statement,NULL)==SQLITE_OK)
+        {
+            if(sqlite3_step(statement)== SQLITE_ROW)
+            {
+                temp=sqlite3_column_int(statement, 0);
+                if(temp>lastSynced)
+                    lastSynced=temp;
+            }
+            sqlite3_finalize(statement);
+        }
+        
+        NSString *MessageCategorySQL = [NSString stringWithFormat: @"SELECT max(last_synced) from MESSAGE_CATEGORY"];
+        const char *query_message_category_stmt = [MessageCategorySQL UTF8String];
+        if(sqlite3_prepare_v2(thriveDB,query_message_category_stmt,-1,&statement,NULL)==SQLITE_OK)
+        {
+            if(sqlite3_step(statement)== SQLITE_ROW)
+            {
+                temp=sqlite3_column_int(statement, 0);
+                if(temp>lastSynced)
+                    lastSynced=temp;
+            }
+            sqlite3_finalize(statement);
+        }
+        
+        NSString *Message_files_SQL = [NSString stringWithFormat: @"SELECT max(last_synced) from MESSAGE_FILES"];
+        const char *query_message_files_stmt = [Message_files_SQL UTF8String];
+        if(sqlite3_prepare_v2(thriveDB,query_message_files_stmt,-1,&statement,NULL)==SQLITE_OK)
+        {
+            if(sqlite3_step(statement)== SQLITE_ROW)
+            {
+                temp=sqlite3_column_int(statement, 0);
+                if(temp>lastSynced)
+                    lastSynced=temp;
+            }
+            sqlite3_finalize(statement);
+        }
+        sqlite3_close(thriveDB);
+    }
+    
+    return lastSynced;
+}
+
 -(NSMutableArray *) pullServerRecords
 {
     NSLog(@"pull records from the server");
     NSMutableArray *send;
     
+    int last_synced=[self pullLastSynced];
+    
     //NSString* jsonURL = [NSString stringWithFormat:@"http://challengernet.com/thrive_remote.php"];
     //NSString* jsonURL = [NSString stringWithFormat:@"http://ithrive.ca/remote/mobile/"];
-    NSString* jsonURL = [NSString stringWithFormat:@"http://challengernet.com/mobile/ithrive/index.php/mobile/index/0"];
+    NSString* jsonURL = [NSString stringWithFormat:@"http://challengernet.com/mobile/ithrive/index.php/mobile/index/%i",last_synced];
+    NSLog(@"jsonURL %@",jsonURL);
     NSError* err = nil;
     NSURLResponse* responce = nil;
     NSMutableURLRequest* request = [[[NSMutableURLRequest alloc] init] autorelease];
