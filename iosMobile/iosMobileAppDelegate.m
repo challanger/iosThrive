@@ -336,6 +336,11 @@
         [server_cateogry release];
     }
     
+    if(([news_posts count]>0)||([category_items count]>0))
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshView" object:nil];
+    }
+    
     return send;
 }
 

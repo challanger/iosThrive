@@ -55,6 +55,9 @@
     NSLog(@"after load media");
     //reload the media view every 5 min
     loadMediaTimmer = [NSTimer scheduledTimerWithTimeInterval:300.0 target:self selector:@selector(loadData) userInfo:nil repeats:YES];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshViewMedia:) name:@"refreshViewMedia" object:nil];
+    
     [super viewWillAppear:animated];
 }
 
@@ -66,9 +69,15 @@
 
 - (void)viewDidUnload
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"refreshViewMedia" object:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+}
+
+-(void)refreshViewMedia:(NSNotification *) notification
+{
+    [self loadData];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

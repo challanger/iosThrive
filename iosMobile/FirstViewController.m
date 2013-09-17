@@ -139,11 +139,19 @@
     //reload the image view every 5 min (300.0)
     loadNewsTimer = [NSTimer scheduledTimerWithTimeInterval:300.0 target:self selector:@selector(loadData) userInfo:nil repeats:YES];
     [self startNewsTimer];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshView:) name:@"refreshView" object:nil];
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
     [loadNewsTimer invalidate];
     [self killNewsTimer];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"refreshView" object:nil];
+}
+
+-(void)refreshView:(NSNotification *) notification
+{
+    [self loadData];
 }
 
 
