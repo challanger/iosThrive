@@ -55,7 +55,7 @@
             [urlData writeToFile:filePath atomically:YES];
             
             //save the file name
-            mobile_image=[NSMutableString stringWithString: file_name];
+            mobile_image=[[NSMutableString alloc] initWithString: file_name];
             image_loaded=1;
             [self save_to_db];
             

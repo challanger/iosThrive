@@ -316,24 +316,22 @@
         //NSLog(@"News slide url %@", [[news_posts objectAtIndex:i] objectForKey:@"imageurl"]);
         MessageCategory *server_cateogry=[[MessageCategory alloc] init];
         [server_cateogry load_items_from_server:[category_items objectAtIndex:i]];
-        
-        //Now save the messages for this category 
-        NSArray *message_items=[[category_items objectAtIndex:i] objectForKey:@"items"];
-        //NSLog(@"Number of messages items %i",[message_items count]);
-        int j=0;
-        for(j=0; j< [message_items count]; j++)
-        {
-            
-            //NSLog(@"News slide url %@", [[news_posts objectAtIndex:i] objectForKey:@"imageurl"]);
-            int cat_web_id=[[[category_items objectAtIndex:i] objectForKey:@"id"] intValue];
-            MessageItem *server_message=[[MessageItem alloc] init];
-            [server_message load_items_from_server:[message_items objectAtIndex:j] data: cat_web_id];
-            [server_message release];
-            
-            
-        }
-        
         [server_cateogry release];
+    }
+    
+    //Now save the messages for this category
+    NSArray *message_items=[resultsDictionary objectForKey:@"messages"];
+    //NSLog(@"Number of messages items %i",[message_items count]);
+    int j=0;
+    for(j=0; j< [message_items count]; j++)
+    {
+        
+        //NSLog(@"News slide url %@", [[news_posts objectAtIndex:i] objectForKey:@"imageurl"]);
+        MessageItem *server_message=[[MessageItem alloc] init];
+        [server_message load_items_from_server:[message_items objectAtIndex:j]];
+        [server_message release];
+        
+        
     }
     
     if(([news_posts count]>0)||([category_items count]>0))

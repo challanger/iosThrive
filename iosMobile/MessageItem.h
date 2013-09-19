@@ -36,7 +36,7 @@
 //save an item to the db
 -(BOOL) save_to_db;
 //load item from source 
--(void) load_items_from_server: (NSDictionary *)serverData data: (int) json_cat_id;
+-(void) load_items_from_server: (NSDictionary *)serverData;
 //load the current message items for a given category id
 +(NSMutableArray *) load_current_files_db: (int) cat_id;
 

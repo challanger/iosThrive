@@ -160,7 +160,7 @@
 
 }
 //load item from source 
--(void) load_items_from_server: (NSDictionary *)serverData data: (int) json_cat_id
+-(void) load_items_from_server: (NSDictionary *)serverData
 {
     //pull the id for the news item from the json data
     NSString *json_id= [serverData objectForKey:@"id"];
@@ -173,7 +173,7 @@
     {
         //New record create it
         web_id= [[serverData objectForKey:@"id"] intValue];
-        category_id = json_cat_id;
+        category_id = [[serverData objectForKey:@"catID"] intValue];
         file = [[NSMutableString alloc] initWithString:[serverData objectForKey:@"url"]];
         name = [[NSMutableString alloc] initWithString:[serverData objectForKey:@"title"]];
         active = 1;
@@ -188,7 +188,7 @@
         if(last_synced< last_synced_json) //only update if the old record is out of date
         {
             web_id= [[serverData objectForKey:@"id"] intValue];
-            category_id = json_cat_id;
+            category_id = [[serverData objectForKey:@"catID"] intValue];
             file = [[NSMutableString alloc] initWithString:[serverData objectForKey:@"url"]];
             name = [[NSMutableString alloc] initWithString:[serverData objectForKey:@"title"]];
             active = 1;

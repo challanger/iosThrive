@@ -264,10 +264,10 @@
 - (void)dealloc
 {
     //[mImageView release];
-    [imageViews release];
+    /*[imageViews release];
     imageViews=nil;
     [imageShadowViews release];
-    imageShadowViews=nil;
+    imageShadowViews=nil;*/
     
     [super dealloc];
 }
