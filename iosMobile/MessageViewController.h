@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <MediaPlayer/MediaPlayer.h>
+#import <AVFoundation/AVFoundation.h>
+#import <CoreMedia/CMTime.h>
 
 @interface MessageViewController : UIViewController  {
     UILabel *mTitle;
@@ -21,9 +23,13 @@
     NSString *webID;
     NSTimer *playbackTimer;
     UIProgressView *progressView;
-    MPMoviePlayerController *audioPlayer;
+    //MPMoviePlayerController *audioPlayer;
+    AVPlayer *audioPlayer;
+    AVPlayerItem *audioPlayerItem;
     bool audioPlaying;
     bool valid_audio_player;
+    
+    id timeObserver; 
     
     UIActivityIndicatorView *spinner;
 }
@@ -33,7 +39,9 @@
 @property (nonatomic, retain) IBOutlet UILabel *mCategoryAuthor;
 @property (nonatomic, retain) IBOutlet UILabel *mTime;
 @property (nonatomic, retain) IBOutlet UIImageView *mImageView;
-@property (nonatomic, retain) MPMoviePlayerController *audioPlayer;
+//@property (nonatomic, retain) MPMoviePlayerController *audioPlayer;
+@property (nonatomic, retain) AVPlayer *audioPlayer;
+@property (nonatomic, retain) AVPlayerItem *audioPlayerItem;
 @property (nonatomic, retain) NSTimer *playbackTimer;
 @property (nonatomic, retain) IBOutlet UIProgressView *progressView;
 @property (nonatomic, retain) IBOutlet UIButton *playButton;

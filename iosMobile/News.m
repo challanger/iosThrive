@@ -247,7 +247,7 @@
         image_mobile = [[NSMutableString alloc] initWithString: @""];
         link = [[NSMutableString alloc] initWithString:[JSONData objectForKey:@"link"]];
         caption = [[NSMutableString alloc] initWithString:[JSONData objectForKey:@"caption"]];
-        active = 1;
+        active = [[JSONData objectForKey:@"active"] intValue];
         
         start_date = [[JSONData objectForKey:@"start_date"] intValue];
         end_date = [[JSONData objectForKey:@"expires"] intValue];
@@ -279,7 +279,7 @@
             image_mobile = [[NSMutableString alloc] initWithString:@""];
             link = [[NSMutableString alloc] initWithString:[JSONData objectForKey:@"link"]];
             caption = [[NSMutableString alloc] initWithString:[JSONData objectForKey:@"caption"]];
-            active = 1;
+            active = [[JSONData objectForKey:@"active"] intValue];
             start_date = [[JSONData objectForKey:@"start_date"] intValue];
             end_date = [[JSONData objectForKey:@"expires"] intValue];
             mobile_loaded = 0;
@@ -321,7 +321,7 @@
         //Get the unix timestamp
         int long date=[[NSDate date] timeIntervalSince1970];
         //date=date*1000;
-        NSString *loadSQL = [NSString stringWithFormat: @"SELECT * from NEWS WHERE end_date>%ld",date];
+        NSString *loadSQL = [NSString stringWithFormat: @"SELECT * from NEWS WHERE active=1 and start_date<%ld and end_date>%ld",date,date];
         const char *query_stmt = [loadSQL UTF8String];
         if(sqlite3_prepare_v2(thriveDB,query_stmt,-1,&statement,NULL)==SQLITE_OK)
         {

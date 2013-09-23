@@ -225,7 +225,7 @@
         mobile_image = [[NSMutableString alloc] initWithString:@""]; //[NSMutableString stringWithString:@""];
         name = [[NSMutableString alloc] initWithString:[JSONData objectForKey:@"title"]];
         author = [[NSMutableString alloc] initWithString:[JSONData objectForKey:@"author"]];
-        active = 1;
+        active = [[JSONData objectForKey:@"active"] intValue];
         date = [[JSONData objectForKey:@"date"] intValue];
         image_loaded = 0;
         last_synced = [[JSONData objectForKey:@"last_modified"] intValue];
@@ -255,7 +255,7 @@
             mobile_image = [[NSMutableString alloc] initWithString:@""]; //[NSMutableString stringWithString:@""];
             name = [[NSMutableString alloc] initWithString:[JSONData objectForKey:@"title"]];
             author = [[NSMutableString alloc] initWithString:[JSONData objectForKey:@"author"]];
-            active = 1;
+            active = [[JSONData objectForKey:@"active"] intValue];
             date = [[JSONData objectForKey:@"date"] intValue];
             image_loaded = 0;
             last_synced = [[JSONData objectForKey:@"last_modified"] intValue];

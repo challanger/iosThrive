@@ -176,7 +176,7 @@
         category_id = [[serverData objectForKey:@"catID"] intValue];
         file = [[NSMutableString alloc] initWithString:[serverData objectForKey:@"url"]];
         name = [[NSMutableString alloc] initWithString:[serverData objectForKey:@"title"]];
-        active = 1;
+        active = [[serverData objectForKey:@"active"] intValue];
         date = [[serverData objectForKey:@"date"] intValue];
         last_synced = [[serverData objectForKey:@"last_modified"] intValue];
         
@@ -191,7 +191,7 @@
             category_id = [[serverData objectForKey:@"catID"] intValue];
             file = [[NSMutableString alloc] initWithString:[serverData objectForKey:@"url"]];
             name = [[NSMutableString alloc] initWithString:[serverData objectForKey:@"title"]];
-            active = 1;
+            active = [[serverData objectForKey:@"active"] intValue];
             date = [[serverData objectForKey:@"date"] intValue];
             last_synced = [[serverData objectForKey:@"last_modified"] intValue];
             
@@ -217,7 +217,7 @@
     if(sqlite3_open(dbpath,&thriveDB)==SQLITE_OK)
     {
         //Get the unix timestamp
-        NSString *loadSQL = [NSString stringWithFormat: @"SELECT * from MESSAGE_FILES WHERE category=%i order by date desc",cat_id];
+        NSString *loadSQL = [NSString stringWithFormat: @"SELECT * from MESSAGE_FILES WHERE category=%i and active=1 order by date desc",cat_id];
         const char *query_stmt = [loadSQL UTF8String];
         if(sqlite3_prepare_v2(thriveDB,query_stmt,-1,&statement,NULL)==SQLITE_OK)
         {

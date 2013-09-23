@@ -9,9 +9,11 @@
 #import "MessageViewController.h"
 #import "MessageCategory.h"
 #import "MessageItem.h"
+#import <AVFoundation/AVFoundation.h>
+#import <CoreMedia/CMTime.h>
 
 @implementation MessageViewController
-@synthesize webID, mTitle, mCategoryTitle, mCategoryAuthor, mTime, mImageView, playbackTimer, progressView, audioPlayer,playButton;
+@synthesize webID, mTitle, mCategoryTitle, mCategoryAuthor, mTime, mImageView, playbackTimer, progressView, audioPlayer, audioPlayerItem,playButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,9 +42,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    //[mCategoryTitle setText:@"test"];
-    //NSLog(@"webID %@",webID);
     valid_audio_player=false;
 }
 
@@ -54,26 +53,35 @@
 -(void)viewWillDisappear:(BOOL)animated {
     self.navigationController.navigationBar.hidden = YES;
     
-    if((valid_audio_player)&&([audioPlayer respondsToSelector:@selector(playbackState)]))
+    if([audioPlayer rate] != 0.0)
     {
-        //stop the audio play back
-        if(audioPlayer.playbackState == MPMoviePlaybackStatePlaying)
+        //audioPlaying = FALSE;
+        [audioPlayer pause];
+        
+        if (timeObserver)
         {
-            [playbackTimer invalidate];
-            [audioPlayer stop];
+            [audioPlayer removeTimeObserver:timeObserver];
+            [timeObserver release];
+            timeObserver = nil;
         }
     }
-    else
-        NSLog(@"Player state not found, did nothing");
 }
 
 - (void)viewDidUnload
 {
+    NSLog(@"View did unload");
+    [audioPlayer pause];
+    
+    if (timeObserver) 
+    {
+        [audioPlayer removeTimeObserver:timeObserver];
+        [timeObserver release];
+        timeObserver = nil;
+    }
+    
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
     //[playbackTimer invalidate];
-    //[audioPlayer stop];
+    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -86,24 +94,15 @@
 {
     if(valid_audio_player)
     {
-        if(audioPlayer.playbackState == MPMoviePlaybackStatePlaying)
+        if([audioPlayer rate] != 0.0)
         {
-            //audioPlaying = FALSE;
             [audioPlayer pause];
             [playButton setImage:[UIImage imageNamed:@"message_tab_play.png"] forState:UIControlStateNormal];
         }
         else
         {
-            spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-            spinner.center = CGPointMake(100, 100);
-            spinner.transform = CGAffineTransformMakeScale(2, 2);
-            spinner.hidesWhenStopped = YES;
-            [self.view addSubview:spinner];
-            [spinner startAnimating];
-        
             [audioPlayer play];
             [playButton setImage:[UIImage imageNamed:@"message_tab_pause.png"] forState:UIControlStateNormal];
-            //audioPlaying = TRUE;
         }
     }
     else
@@ -114,75 +113,110 @@
 
 -(void)updateTime
 {
-    //NSArray *audioMetadata = [audioPlayer timedMetadata];
-
-    int minutes = (int)roundf(floor(audioPlayer.currentPlaybackTime/60));
-    int seconds = (int)floorf(audioPlayer.currentPlaybackTime - (minutes * 60));
-    
-    
-    
-    int duration_minutes = (int)roundf(floor(audioPlayer.duration/60));
-    int duration_seconds = (int)floorf(audioPlayer.duration - (duration_minutes * 60));
-    
-    //NSLog(@"Current Time %i:%02i/%i:%02i",minutes,seconds,duration_minutes,duration_seconds);
-    
-    NSString *timeInfoString = [[NSString alloc] initWithFormat:@"%i:%02i/%i:%02i",minutes,seconds,duration_minutes,duration_seconds];
-    
-    float progress = audioPlayer.currentPlaybackTime / audioPlayer.duration;
-    
-    progressView.progress=progress;
-    
-    mTime.text = timeInfoString;
-    [timeInfoString release];
+    if (audioPlayerItem.status == AVPlayerItemStatusReadyToPlay)  
+    {
+        CMTime playerItemDuration =([audioPlayerItem duration]);
+        if (CMTIME_IS_INVALID(playerItemDuration))
+        {
+            return;
+        }
+        
+        
+        
+        double duration = CMTimeGetSeconds(playerItemDuration);
+        
+        if (isfinite(duration) && (duration > 0))
+        {
+            double time = CMTimeGetSeconds([audioPlayer currentTime]);
+            
+            int minutes = (int)roundf(floor(time/60));
+            int seconds = (int)floorf(time - (minutes * 60));
+            
+            int duration_minutes = (int)roundf(floor(duration/60));
+            int duration_seconds = (int)floorf(duration - (duration_minutes * 60));
+            
+            NSString *timeInfoString = [[NSString alloc] initWithFormat:@"%i:%02i/%i:%02i",minutes,seconds,duration_minutes,duration_seconds];
+            
+            float progress = time / duration;
+            
+            progressView.progress=progress;
+            mTime.text = timeInfoString;
+            [timeInfoString release];
+            
+            //NSLog(@"Time %f %f",duration, time);  
+        }
+        
+    }
 }
 
 -(void)loadAudio: (NSString *) audio_file
 {
-    //NSLog(@"audo file location %@",audio_file);
-    NSURL *url =[[NSURL alloc] initWithString:audio_file ];
-    audioPlayer = [[[MPMoviePlayerController alloc] initWithContentURL:url] autorelease];
-    audioPlayer.movieSourceType = MPMovieSourceTypeStreaming;
-    audioPlayer.view.hidden = YES;
-    [self.view addSubview:audioPlayer.view];
-    //[audioPlayer play];
-    audioPlaying=false;
+    NSLog(@"audo file location %@",audio_file);
+    NSURL *url = [NSURL URLWithString:audio_file]; //[[NSURL alloc] initWithString:audio_file ];
+    self.audioPlayerItem =  [AVPlayerItem playerItemWithURL:url];
+    self.audioPlayer = [AVPlayer playerWithPlayerItem:self.audioPlayerItem];
+    
+    spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    spinner.center = CGPointMake(100, 100);
+    spinner.transform = CGAffineTransformMakeScale(2, 2);
+    spinner.hidesWhenStopped = YES;
+    [self.view addSubview:spinner];
+    [spinner startAnimating];
     
     [url release];
     url=nil;
     
-        
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(MPMoviePlayerLoadStateDidChange:) name:MPMoviePlayerLoadStateDidChangeNotification object:nil];
+    [audioPlayer addObserver:self forKeyPath:@"status" options:0 context:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(MPMoviewPlayerPlay:) name:MPMoviePlayerPlaybackStateDidChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerItemDidReachEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:audioPlayerItem];
 }
 
-- (void)MPMoviePlayerLoadStateDidChange:(NSNotification *)notification
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if ((audioPlayer.loadState & MPMovieLoadStatePlaythroughOK) == MPMovieLoadStatePlaythroughOK)
-    {
+    if (object == audioPlayer && [keyPath isEqualToString:@"status"]) {
         [spinner stopAnimating];
-       // NSLog(@"content play length is %g seconds", audioPlayer.duration);
-        //NSLog(@"current time in %g seconds",audioPlayer.currentPlaybackTime);
         
-        playbackTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTime) userInfo:nil repeats:YES];
-        valid_audio_player=true;
+        if (audioPlayer.status == AVPlayerStatusFailed) {
+            NSLog(@"AVPlayer Failed");
+            
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Audio player failed" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            
+            [alertView show];
+            [alertView release];
+            
+        } else if (audioPlayer.status == AVPlayerStatusReadyToPlay) {
+            NSLog(@"AVPlayerStatusReadyToPlay");
+            [self.audioPlayer play];
+            valid_audio_player=true;
+            audioPlaying=true;
+            
+            [playButton setImage:[UIImage imageNamed:@"message_tab_pause.png"] forState:UIControlStateNormal];
+            
+            timeObserver = [[audioPlayer addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(1, NSEC_PER_SEC) queue:NULL usingBlock: ^(CMTime time) { [self updateTime]; }] retain];
+        } else if (audioPlayer.status == AVPlayerItemStatusUnknown) {
+            NSLog(@"AVPlayer Unknown");
+            
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Audio player status unknow" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            
+            [alertView show];
+            [alertView release];
+            
+        }
     }
 }
 
--(void)MPMoviewPlayerPlay:(NSNotification *)notification
+- (void)playerItemDidReachEnd:(NSNotification *)notification {
+    
+    [audioPlayer seekToTime:kCMTimeZero];
+    
+    [playButton setImage:[UIImage imageNamed:@"message_tab_play.png"] forState:UIControlStateNormal];
+}
+
+-(void)AudioPlayerPlay:(NSNotification *)notification
 {
-    if ((audioPlayer.loadState & MPMovieLoadStatePlaythroughOK) == MPMovieLoadStatePlaythroughOK)
-    {
-        [spinner stopAnimating];
-        if(audioPlayer.playbackState == MPMoviePlaybackStatePlaying)
-            playbackTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTime) userInfo:nil repeats:YES];
-        else if(audioPlayer.playbackState == MPMoviePlaybackStatePaused)
-            [playbackTimer invalidate];
-        else  if(audioPlayer.playbackState == MPMoviePlaybackStateInterrupted)
-            [playbackTimer invalidate];
-    }
-    //if(audioPlaying == TRUE)
-        //NSLog(@"Play");
+    CMTime duration = [[[[[self.audioPlayerItem tracks] objectAtIndex:0] assetTrack] asset] duration];
+    Float64 duration_seconds = CMTimeGetSeconds(duration);
+    NSLog(@"Audio ready duraction is %f",duration_seconds);
 }
 
 -(void) loadMessage
