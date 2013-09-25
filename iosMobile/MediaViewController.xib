@@ -41,13 +41,13 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<object class="IBUIView" id="440028012">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">272</int>
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBUIScrollView" id="632925135">
 								<reference key="NSNextResponder" ref="440028012"/>
-								<int key="NSvFlags">274</int>
-								<string key="NSFrame">{{20, 20}, {320, 411}}</string>
+								<int key="NSvFlags">272</int>
+								<string key="NSFrame">{{20, 20}, {360, 451}}</string>
 								<reference key="NSSuperview" ref="440028012"/>
 								<reference key="NSWindow"/>
 								<object class="NSColor" key="IBUIBackgroundColor">

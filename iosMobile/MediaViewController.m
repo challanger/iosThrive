@@ -245,6 +245,8 @@
         
     }
     
+    x=x+60;
+    
     [categories release];
     categories = nil;
 
