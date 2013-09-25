@@ -31,6 +31,7 @@
 		8592605D16E571FF008D21AE /* MessageItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8592605C16E571FF008D21AE /* MessageItem.m */; };
 		8592DFC517ECE6370021C738 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85CF34D616EBC41B00D7A285 /* AVFoundation.framework */; };
 		8592DFC717EFD6980021C738 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8592DFC617EFD6980021C738 /* CoreMedia.framework */; };
+		8592DFC917F270F00021C738 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8592DFC817F270F00021C738 /* AudioToolbox.framework */; };
 		859896E716CF2A30005EA551 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 859896E616CF2A30005EA551 /* UIKit.framework */; };
 		859896E916CF2A30005EA551 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 859896E816CF2A30005EA551 /* Foundation.framework */; };
 		859896EB16CF2A30005EA551 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 859896EA16CF2A30005EA551 /* CoreGraphics.framework */; };
@@ -119,6 +120,7 @@
 		8592605B16E571FF008D21AE /* MessageItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageItem.h; sourceTree = "<group>"; };
 		8592605C16E571FF008D21AE /* MessageItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageItem.m; sourceTree = "<group>"; };
 		8592DFC617EFD6980021C738 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		8592DFC817F270F00021C738 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		859896E216CF2A30005EA551 /* iosMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		859896E616CF2A30005EA551 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		859896E816CF2A30005EA551 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -183,6 +185,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8592DFC917F270F00021C738 /* AudioToolbox.framework in Frameworks */,
 				8592DFC717EFD6980021C738 /* CoreMedia.framework in Frameworks */,
 				8592DFC517ECE6370021C738 /* AVFoundation.framework in Frameworks */,
 				85EF29E616F12F2700EDADB2 /* MediaPlayer.framework in Frameworks */,
@@ -211,6 +214,7 @@
 		859896D716CF2A30005EA551 = {
 			isa = PBXGroup;
 			children = (
+				8592DFC817F270F00021C738 /* AudioToolbox.framework */,
 				8592DFC617EFD6980021C738 /* CoreMedia.framework */,
 				859DBC3017CEC3FA004366B4 /* Default@2x.png */,
 				859DBC2E17CEC3EE004366B4 /* Default.png */,

@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
+#import <AudioToolbox/AudioToolbox.h>
 
 @interface iosMobileAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate> {
     NSTimer* loadServerTimer;

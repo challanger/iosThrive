@@ -26,6 +26,7 @@
 
 - (void)dealloc
 {
+    NSLog(@"message dealloc");
     [super dealloc];
 }
 
@@ -41,42 +42,61 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    valid_audio_player=false;
-}
-
--(void)viewWillAppear:(BOOL)animated {
-    self.navigationController.navigationBar.hidden = NO;
-    [self loadMessage];
-}
-
--(void)viewWillDisappear:(BOOL)animated {
-    self.navigationController.navigationBar.hidden = YES;
-    
+   // NSLog(@"ViewDidLoad");
     if([audioPlayer rate] != 0.0)
     {
         //audioPlaying = FALSE;
         [audioPlayer pause];
-        
-        if (timeObserver)
+    }
+    valid_audio_player=false;
+    [self loadMessage];
+    
+    [super viewDidLoad];
+   
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    //NSLog(@"viewWillAppear");
+    self.navigationController.navigationBar.hidden = NO;
+   // [self loadMessage];
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    //NSLog(@"ViewWillDisappear");
+    self.navigationController.navigationBar.hidden = YES;
+    
+    
+    if (self.isMovingFromParentViewController || self.isBeingDismissed) {
+        if([audioPlayer rate] != 0.0)
         {
-            [audioPlayer removeTimeObserver:timeObserver];
-            [timeObserver release];
-            timeObserver = nil;
+            //audioPlaying = FALSE;
+            [audioPlayer pause];
+            
+            if (timeObserver)
+            {
+                [audioPlayer removeTimeObserver:timeObserver];
+                [timeObserver release];
+                timeObserver = nil;
+            }
         }
     }
 }
 
 - (void)viewDidUnload
 {
-    NSLog(@"View did unload");
-    [audioPlayer pause];
+    //NSLog(@"View did unload");
+    //[audioPlayer pause];
     
-    if (timeObserver) 
+    if([audioPlayer rate] != 0.0)
     {
-        [audioPlayer removeTimeObserver:timeObserver];
-        [timeObserver release];
-        timeObserver = nil;
+        //audioPlaying = FALSE;
+        [audioPlayer pause];
+        if (timeObserver)
+        {
+            [audioPlayer removeTimeObserver:timeObserver];
+            [timeObserver release];
+            timeObserver = nil;
+        }
     }
     
     [super viewDidUnload];
@@ -216,7 +236,7 @@
 {
     CMTime duration = [[[[[self.audioPlayerItem tracks] objectAtIndex:0] assetTrack] asset] duration];
     Float64 duration_seconds = CMTimeGetSeconds(duration);
-    NSLog(@"Audio ready duraction is %f",duration_seconds);
+    //NSLog(@"Audio ready duraction is %f",duration_seconds);
 }
 
 -(void) loadMessage
