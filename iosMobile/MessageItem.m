@@ -125,11 +125,11 @@
                              
         if(n_id==0)
         {
-            saveSQL = [NSString stringWithFormat: @"INSERT INTO MESSAGE_FILES (webID,category,file,name,date,last_synced) VALUES (%i,%i,'%@',\"%@\",%i,%i)",web_id,category_id,file,name,date,last_synced];
+            saveSQL = [NSString stringWithFormat: @"INSERT INTO MESSAGE_FILES (webID,category,file,name,date,last_synced,active) VALUES (%i,%i,'%@',\"%@\",%i,%i,%i)",web_id,category_id,file,name,date,last_synced,active];
         }
         else 
         {
-            saveSQL = [NSString stringWithFormat: @"UPDATE MESSAGE_FILES set category=%i, file='%@', name=\"%@\", date=%i, last_synced=%i WHERE webID=%i",category_id,file,name,date,last_synced,web_id];
+            saveSQL = [NSString stringWithFormat: @"UPDATE MESSAGE_FILES set category=%i, file='%@', name=\"%@\", date=%i, last_synced=%i,active=%i WHERE webID=%i",category_id,file,name,date,last_synced,active,web_id];
         }
         const char *query_stmt = [saveSQL UTF8String];
         if(sqlite3_prepare_v2(thriveDB,query_stmt,-1,&statement,NULL)==SQLITE_OK)

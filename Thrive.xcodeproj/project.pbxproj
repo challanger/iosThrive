@@ -20,6 +20,7 @@
 		8525F1D316E2BF7A008AD75E /* MediaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8525F1D116E2BF7A008AD75E /* MediaViewController.xib */; };
 		8540368316EADD820044213D /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8540368116EADD820044213D /* MessageViewController.m */; };
 		8540368416EADD820044213D /* MessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8540368216EADD820044213D /* MessageViewController.xib */; };
+		8574B37E18077B3900A34ED8 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8574B37D18077B3900A34ED8 /* Icon.png */; };
 		85922CB1171B6BA10091FEB2 /* 53-house@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85922CB0171B6BA10091FEB2 /* 53-house@2x.png */; };
 		85922CB3171B6BF20091FEB2 /* 53-house.png in Resources */ = {isa = PBXBuildFile; fileRef = 85922CB2171B6BF20091FEB2 /* 53-house.png */; };
 		85922CB6171B6C3E0091FEB2 /* 275-broadcast.png in Resources */ = {isa = PBXBuildFile; fileRef = 85922CB4171B6C3E0091FEB2 /* 275-broadcast.png */; };
@@ -110,6 +111,7 @@
 		8540368016EADD810044213D /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
 		8540368116EADD820044213D /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
 		8540368216EADD820044213D /* MessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageViewController.xib; sourceTree = "<group>"; };
+		8574B37D18077B3900A34ED8 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		85922CB0171B6BA10091FEB2 /* 53-house@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "53-house@2x.png"; sourceTree = "<group>"; };
 		85922CB2171B6BF20091FEB2 /* 53-house.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "53-house.png"; sourceTree = "<group>"; };
 		85922CB4171B6C3E0091FEB2 /* 275-broadcast.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "275-broadcast.png"; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 				8592DFC617EFD6980021C738 /* CoreMedia.framework */,
 				859DBC3017CEC3FA004366B4 /* Default@2x.png */,
 				859DBC2E17CEC3EE004366B4 /* Default.png */,
+				8574B37D18077B3900A34ED8 /* Icon.png */,
 				859DBC2A17CEC19B004366B4 /* app_icon_114_114.png */,
 				859DBC2817CEC196004366B4 /* app_icon_57_57.png */,
 				85E870AE170D032F00DC5B38 /* Default-568h@2x.png */,
@@ -507,6 +510,7 @@
 				859DBC4717D6A3C5004366B4 /* media_tab_drop_shadow.png in Resources */,
 				859DBC4817D6A3C5004366B4 /* media_tab_go_button.png in Resources */,
 				8592DFCD17F27B010021C738 /* thrive_laugh_image@2x.png in Resources */,
+				8574B37E18077B3900A34ED8 /* Icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -672,12 +676,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Thrive Community Church (RTNKKDJ3Y9)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iosMobile/iosMobile-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "iosMobile/iosMobile-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B9DA15E3-6BFB-453A-8FDD-93EEF4E0AF52";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

@@ -190,6 +190,8 @@
             int db_status=sqlite3_step(statement);
             if(db_status== SQLITE_DONE)
             {
+                local_id=sqlite3_last_insert_rowid(thriveDB);
+                
                 sqlite3_close(thriveDB);
                 return true;                
             }
@@ -238,7 +240,7 @@
     
     //try to load the data from the serve 
     [self load_item_db:jID];
-    if([self get_web_id]==0)
+    if(local_id==0)
     {
         //New record create it
         n_id= [[JSONData objectForKey:@"id"] intValue];
@@ -294,6 +296,9 @@
             //NSLog(@"record is upto date %ld %i",last_synced, last_synced_json);
     }
     
+    int long date=[[NSDate date] timeIntervalSince1970];
+    if(end_date>date)   //pull all the images that could be needed now or latter
+        [self pull_image_from_web];
     
 }
 

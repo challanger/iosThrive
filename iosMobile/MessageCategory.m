@@ -173,11 +173,11 @@
         //NSLog(@"Save last synced: %i",last_synced);
         if(n_id==0)
         {
-            saveSQL = [NSString stringWithFormat: @"INSERT INTO MESSAGE_CATEGORY (webID,name,web_image,author,date,last_synced) VALUES ('%i','%@', '%@', '%@', %i,%i)",web_id,name,web_image,author,date,last_synced];
+            saveSQL = [NSString stringWithFormat: @"INSERT INTO MESSAGE_CATEGORY (webID,name,web_image,author,date,last_synced,active) VALUES ('%i','%@', '%@', '%@', %i,%i,%i)",web_id,name,web_image,author,date,last_synced,active];
         }
         else 
         {
-            saveSQL = [NSString stringWithFormat: @"UPDATE MESSAGE_CATEGORY set name='%@', web_image='%@', mobile_image='%@', author='%@', date=%i, image_loaded=%i, active=%i, last_synced=%i WHERE webID=%i",name,web_image,mobile_image,author,date,image_loaded,active,last_synced,web_id];
+            saveSQL = [NSString stringWithFormat: @"UPDATE MESSAGE_CATEGORY set name='%@', web_image='%@', mobile_image='%@', author='%@', date=%i, image_loaded=%i, active=%i, last_synced=%i, active=%i WHERE webID=%i",name,web_image,mobile_image,author,date,image_loaded,active,last_synced,active,web_id];
         }
         const char *query_stmt = [saveSQL UTF8String];
         if(sqlite3_prepare_v2(thriveDB,query_stmt,-1,&statement,NULL)==SQLITE_OK)

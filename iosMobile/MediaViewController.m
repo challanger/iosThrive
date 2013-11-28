@@ -184,7 +184,15 @@
             [message_name.titleLabel setTextAlignment:UITextAlignmentLeft];
             message_name.contentHorizontalAlignment =UIControlContentHorizontalAlignmentLeft;
             message_name.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
-            [message_name setTitle:[mItem get_name] forState:UIControlStateNormal];
+            NSMutableString *message_title= [[NSMutableString alloc] initWithString:[mItem get_name]];
+            
+            if([message_title length]>22)
+            {
+                message_title=[[NSMutableString alloc] initWithString: [message_title substringWithRange: NSMakeRange(0, 22)]];
+                [message_title appendString:@"..."];
+            }
+            
+            [message_name setTitle:message_title forState:UIControlStateNormal];
             if((item_count%2)==0)
                 message_name.backgroundColor = dark_green_color;
             else 
